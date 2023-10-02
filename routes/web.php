@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RatingController;
+use App\Http\Controllers\WordController;
+use App\Http\Controllers\WordTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::resource('ratings', RatingController::class)->only(['index', 'show', 'create']);
+//Route::get('/ratings/create', [RatingController::class, 'add'])->name('ratings.create');
+Route::middleware('auth')->group(function () {
+    Route::resource('ratings', RatingController::class)->except(['index', 'show', 'create']);
+    Route::get('/ratings/{rating}/delete', [RatingController::class, 'delete'])->name('ratings.delete');
+    //Route::get('/ratings/create', [RatingController::class, 'create'])->name('ratings.create');
+    //Route::patch('/ratings/{rating}', [RatingController::class, 'update'])->name('ratings.update');
+});
+
 
 Route::get('/', function () {
     return view('welcome');
