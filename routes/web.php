@@ -17,14 +17,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('ratings', RatingController::class)->only(['index', 'show', 'create']);
-//Route::get('/ratings/create', [RatingController::class, 'add'])->name('ratings.create');
-Route::middleware('auth')->group(function () {
-    Route::resource('ratings', RatingController::class)->except(['index', 'show', 'create']);
-    Route::get('/ratings/{rating}/delete', [RatingController::class, 'delete'])->name('ratings.delete');
-    //Route::get('/ratings/create', [RatingController::class, 'create'])->name('ratings.create');
-    //Route::patch('/ratings/{rating}', [RatingController::class, 'update'])->name('ratings.update');
-});
+Route::resource('ratings', RatingController::class);
+Route::get('/ratings/{rating}/delete', [RatingController::class, 'delete'])->name('ratings.delete');
+
+Route::resource('wordTypes', WordTypeController::class);
+#Route::get('wordTypes/{wordType}', [WordTypeController::class, 'show'])->name('wordTypes.show');
+Route::get('/wordTypes/{wordType}/delete', [WordTypeController::class, 'delete'])->name('wordTypes.delete');
+
+//Route::resource('ratings', RatingController::class)->only(['index', 'show', 'create']);
+////Route::get('/ratings/create', [RatingController::class, 'add'])->name('ratings.create');
+//Route::middleware('auth')->group(function () {
+//    Route::resource('ratings', RatingController::class)->except(['index', 'show', 'create']);
+//    Route::get('/ratings/{rating}/delete', [RatingController::class, 'delete'])->name('ratings.delete');
+//    //Route::get('/ratings/create', [RatingController::class, 'create'])->name('ratings.create');
+//    //Route::patch('/ratings/{rating}', [RatingController::class, 'update'])->name('ratings.update');
+//});
 
 
 Route::get('/', function () {

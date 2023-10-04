@@ -45,6 +45,7 @@ class RatingController extends Controller
      */
     public function show(Rating $rating)
     {
+        dd($rating);
         return view('ratings.show', compact(['rating']));
     }
 

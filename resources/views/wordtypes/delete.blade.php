@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold leading-tight
                    text-xl text-gray-800 dark:text-gray-200">
-            {{ __('Ratings') }}
+            {{ __('Word Types') }}
         </h2>
     </x-slot>
 
@@ -13,7 +13,7 @@
         </h3>
 
         <p class="text-lg bg-red-500 text-white py-6 px-4 mb-6 rounded-lg">Please confirm you wish to delete this
-            rating.</p>
+            word type.</p>
 
         <div class="flex flex-row gap-4 rounded-md
                     bg-gray-200 dark:bg-gray-900">
@@ -22,7 +22,7 @@
                       text-gray-100">
                 Name
             </p>
-            <p class="p-2 w-5/6 dark:text-gray-100">{{ $rating->name }}</p>
+            <p class="p-2 w-5/6 dark:text-gray-100">{{ $wordType->name }}</p>
         </div>
 
         <div class="flex flex-row gap-4 rounded-md
@@ -30,21 +30,9 @@
             <p class="p-2 w-1/6 rounded-l-md
                       bg-gray-500 dark:bg-gray-800
                       text-gray-100">
-                Icon
+                Name
             </p>
-            <p class="p-2 w-5/6 text-gray-100">
-                (<i class="fa fa-{{$rating->icon}}"></i>) {{ $rating->icon }}
-            </p>
-        </div>
-
-        <div class="flex flex-row gap-4 rounded-md
-                    bg-gray-200 dark:bg-gray-900">
-            <p class="p-2 w-1/6 rounded-l-md
-                      bg-gray-500 dark:bg-gray-800
-                      text-gray-100">
-                Stars
-            </p>
-            <p class="p-2 w-5/6 dark:text-gray-100">{{ $rating->stars }} </p>
+            <p class="p-2 w-5/6 dark:text-gray-100">{{ $wordType->code }}</p>
         </div>
 
         <div class="flex flex-row gap-4 rounded-md
@@ -54,7 +42,7 @@
                       text-gray-100">
                 Created At
             </p>
-            <p class="p-2 w-5/6 dark:text-gray-100" >{{ $rating->created_at }} </p>
+            <p class="p-2 w-5/6 dark:text-gray-100" >{{ $wordType->created_at }} </p>
         </div>
 
         <div class="flex flex-row gap-4 rounded-md
@@ -64,14 +52,14 @@
                       text-gray-100">
                 Updated At
             </p>
-            <p class="p-2 w-5/6 dark:text-gray-100" >{{ $rating->updated_at }} </p>
+            <p class="p-2 w-5/6 dark:text-gray-100" >{{ $wordType->updated_at }} </p>
         </div>
 
         <p class="flex flex-row md:w-13 w-full rounded-md">
 
         <form
             method="POST"
-            action="{{ route('ratings.destroy', ['rating'=>$rating]) }}"
+            action="{{ route('wordTypes.destroy', ['wordType'=>$wordType]) }}"
             class="flex flex-col w-full gap-4">
 
             @csrf
@@ -79,7 +67,7 @@
 
             <div class="flex flex-row rounded-md">
 
-                <a href="{{ route('ratings.index') }}"
+                <a href="{{ route('wordTypes.index') }}"
                    class="text-center p-2 grow rounded-l-md
                           text-white
                           bg-sky-500 hover:bg-sky-900

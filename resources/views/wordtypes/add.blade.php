@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold leading-tight
                    text-xl text-gray-800 dark:text-gray-200">
-            {{ __('WordTypes') }}
+            {{ __('Word Types') }}
         </h2>
     </x-slot>
 
@@ -44,7 +44,6 @@
                     class="p-2 w-5/6 bg-gray-200 dark:bg-gray-900 rounded-r-md"
                     value="{{ old('name') }}"/>
             </div>
-
             <div class="flex flex-row gap-4 rounded-md
                     bg-gray-200 dark:bg-gray-900">
                 <label
@@ -55,8 +54,8 @@
                     {{ __("Code") }}
                 </label>
                 <input
-                    id="Name"
-                    name="name"
+                    id="Code"
+                    name="code"
                     type="text"
                     class="p-2 w-5/6 bg-gray-200 dark:bg-gray-900 rounded-r-md"
                     value="{{ old('code') }}"/>

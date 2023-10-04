@@ -2,14 +2,14 @@
     <x-slot name="header">
         <h2 class="font-semibold leading-tight
                    text-xl text-gray-800 dark:text-gray-200">
-            {{ __('WordTypes') }}
+            {{ __('Word Types') }}
         </h2>
     </x-slot>
 
     <section class="w-full p-6 flex flex-col gap-4">
         <h3 class="text-lg text-gray-800 dark:text-gray-200
                    font-bold">
-            {{ __('Add') }}
+            {{ __('Edit') }}
         </h3>
 
         @if($errors->any())
@@ -20,13 +20,14 @@
             </div>
         @endif
 
+
         <form
             method="POST"
-            action="{{ route('wordTypes.store') }}"
+            action="{{ route('wordTypes.update', ['wordType'=>$wordType]) }}"
             class="flex flex-col w-full gap-4">
 
             @csrf
-            @method('POST')
+            @method('PATCH')
 
             <div class="flex flex-row gap-4 rounded-md
                     bg-gray-200 dark:bg-gray-900">
@@ -41,8 +42,8 @@
                     id="Name"
                     name="name"
                     type="text"
-                    class="p-2 w-5/6 bg-gray-200 dark:bg-gray-900 rounded-r-md"
-                    value="{{ old('name') }}"/>
+                    class="p-2 w-5/6 bg-gray-200 dark:bg-gray-900 rounded-r-md dark:text-gray-100"
+                    value="{{ old('name') ?? $wordType->name }}"/>
             </div>
 
             <div class="flex flex-row gap-4 rounded-md
@@ -55,14 +56,12 @@
                     {{ __("Code") }}
                 </label>
                 <input
-                    id="Name"
-                    name="name"
+                    id="Code"
+                    name="code"
                     type="text"
-                    class="p-2 w-5/6 bg-gray-200 dark:bg-gray-900 rounded-r-md"
-                    value="{{ old('code') }}"/>
+                    class="p-2 w-5/6 bg-gray-200 dark:bg-gray-900 rounded-r-md dark:text-gray-100"
+                    value="{{ old('code') ?? $wordType->code }}"/>
             </div>
-
-
 
             <div class="flex flex-row rounded-md">
 

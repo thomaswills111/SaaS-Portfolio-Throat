@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateWordTypeRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateWordTypeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,13 @@ class UpdateWordTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => [
+                'required',
+                Rule::unique('ratings', 'name'),
+                'min:2',
+                'max:32',
+            ],
+            'code' => ['required', 'max:2'],
         ];
     }
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             // $table->foreignId('user_id'); // Might not need this
             $table->timestamps();
 
-            $table->unique(['word', 'word_type_id'], 'word_word_type_idnex');
+            $table->unique(['word', 'word_type_id'], 'word_word_type_index');
         });
     }
 

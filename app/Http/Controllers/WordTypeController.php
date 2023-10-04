@@ -13,7 +13,8 @@ class WordTypeController extends Controller
      */
     public function index()
     {
-        //
+        $wordTypes = WordType::paginate(5);
+        return view('wordTypes.index', compact(['wordTypes']));
     }
 
     /**
@@ -21,7 +22,8 @@ class WordTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('wordTypes.add');
+
     }
 
     /**
@@ -29,7 +31,11 @@ class WordTypeController extends Controller
      */
     public function store(StoreWordTypeRequest $request)
     {
-        //
+        $details = $request->validated(); // Goes to error page if not validated
+        $wordType = WordType::create($details);
+        return redirect(route('wordTypes.index'))
+            ->with('created', $wordType->name)
+            ->with('messages', ['created', true]);
     }
 
     /**
@@ -37,7 +43,7 @@ class WordTypeController extends Controller
      */
     public function show(WordType $wordType)
     {
-        //
+        return view('wordTypes.show', compact(['wordType']));
     }
 
     /**
@@ -45,7 +51,7 @@ class WordTypeController extends Controller
      */
     public function edit(WordType $wordType)
     {
-        //
+        return view('wordTypes.edit', compact(['wordType']));
     }
 
     /**
@@ -53,7 +59,21 @@ class WordTypeController extends Controller
      */
     public function update(UpdateWordTypeRequest $request, WordType $wordType)
     {
-        //
+        $id = $wordType->id;
+        $validated = $request->validated();
+        $wordType->update($validated);
+
+        return redirect(route('wordTypes.index'))
+            ->with('updated', $wordType->name)
+            ->with('messageType', ['updated', true]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function delete(WordType $wordType) {
+
+        return view('wordTypes.delete', compact(['wordType']));
     }
 
     /**
@@ -61,6 +81,8 @@ class WordTypeController extends Controller
      */
     public function destroy(WordType $wordType)
     {
-        //
+        $oldWordType = $wordType;
+        $wordType->delete();
+        return redirect(route('wordTypes.index'))->with('deleted', $oldWordType->name);
     }
 }
