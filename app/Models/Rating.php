@@ -42,5 +42,9 @@ class Rating extends Model
         return "fa-solid fa-$this->icon";
     }
 
+    public function definitions() {
+        return $this->belongsToMany(Definition::class);
+    }
+
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreDefinitionRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class StoreDefinitionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,17 @@ class StoreDefinitionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'word' => [
+                'required',
+                'min:2',
+                'max:32',
+            ],
+            'definition' => 'required',
+            'word_type' => [
+                'required',
+                'min:2',
+                'max:32',
+            ],
         ];
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DefinitionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\WordController;
@@ -19,20 +20,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('ratings', RatingController::class);
 Route::get('/ratings/{rating}/delete', [RatingController::class, 'delete'])->name('ratings.delete');
+Route::get('/ratings/create/{definition}', [RatingController::class, 'create'])->name('ratingsDefinition.create');
+Route::post('/ratings/{definition}', [RatingController::class, 'store'])->name('ratingsDefinition.store');
+
 
 Route::resource('wordTypes', WordTypeController::class);
-#Route::get('wordTypes/{wordType}', [WordTypeController::class, 'show'])->name('wordTypes.show');
 Route::get('/wordTypes/{wordType}/delete', [WordTypeController::class, 'delete'])->name('wordTypes.delete');
 
-//Route::resource('ratings', RatingController::class)->only(['index', 'show', 'create']);
-////Route::get('/ratings/create', [RatingController::class, 'add'])->name('ratings.create');
-//Route::middleware('auth')->group(function () {
-//    Route::resource('ratings', RatingController::class)->except(['index', 'show', 'create']);
-//    Route::get('/ratings/{rating}/delete', [RatingController::class, 'delete'])->name('ratings.delete');
-//    //Route::get('/ratings/create', [RatingController::class, 'create'])->name('ratings.create');
-//    //Route::patch('/ratings/{rating}', [RatingController::class, 'update'])->name('ratings.update');
-//});
+Route::resource('definitions', DefinitionController::class);
+Route::get('/definitions/{definition}/delete', [DefinitionController::class, 'delete'])->name('definitions.delete');
+Route::get('/definitions/create/{word}', [DefinitionController::class, 'create'])->name('definitionsWord.create');
 
+Route::resource('words', WordController::class);
+Route::get('/words/{word}/delete', [WordController::class, 'delete'])->name('words.delete');
 
 Route::get('/', function () {
     return view('welcome');

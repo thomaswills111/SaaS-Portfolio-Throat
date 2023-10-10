@@ -14,12 +14,10 @@ return new class extends Migration
         Schema::create('words', function (Blueprint $table) {
             $table->id();
             $table->string('word', 255);
-            $table->foreignId('word_type_id')->nullable();
-            $table->boolean('appropriate')->default(false);
-            // $table->foreignId('user_id'); // Might not need this
+            $table->boolean('appropriate')->default(true);
             $table->timestamps();
 
-            $table->unique(['word', 'word_type_id'], 'word_word_type_index');
+            //$table->unique(['word', 'word_type_id'], 'word_word_type_index');
         });
     }
 

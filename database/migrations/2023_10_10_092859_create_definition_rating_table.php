@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('definition_ratings', function (Blueprint $table) {
+        Schema::create('definition_rating', function (Blueprint $table) {
             $table->id();
-            $table->foreignid('user_id')->default(0);
-            $table->foreignid('definition_id')->default(0);
-            $table->foreignid('rating_id')->default(0);
-            $table->unsignedTinyInteger('value')->default(0);
-
+            $table->foreignId('definition_id');
+            $table->foreignId('rating_id');
+            $table->foreignId('user_id')->default(0);
+            $table->tinyInteger('value')->default(0);
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('definition_ratings');
+        Schema::dropIfExists('definition_rating');
     }
 };

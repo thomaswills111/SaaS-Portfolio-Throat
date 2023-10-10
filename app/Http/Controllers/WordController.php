@@ -13,7 +13,8 @@ class WordController extends Controller
      */
     public function index()
     {
-        //
+        $words = Word::paginate(5);
+        return view('words.index', compact(['words']));
     }
 
     /**
@@ -21,7 +22,7 @@ class WordController extends Controller
      */
     public function create()
     {
-        //
+        return view('words.add');
     }
 
     /**
@@ -29,15 +30,22 @@ class WordController extends Controller
      */
     public function store(StoreWordRequest $request)
     {
-        //
+        $details = $request->validated(); // Goes to error page if not validated
+        $word = Word::create($details);
+        return redirect(route('words.index'))
+            ->with('created', $word->word)
+            ->with('messages', ['created', true]); // inserting the rating's name into a new variable named 'created'
     }
 
     /**
      * Display the specified resource.
+     *
+     * show(Rating $rating) is Route-Model Binding
+     * retrieves the $rating from the Rating Model and returns its content or fails(404)
      */
     public function show(Word $word)
     {
-        //
+        return view('words.show', compact(['word']));
     }
 
     /**
@@ -45,7 +53,8 @@ class WordController extends Controller
      */
     public function edit(Word $word)
     {
-        //
+        return view('words.edit', compact(['word']));
+
     }
 
     /**
@@ -53,7 +62,18 @@ class WordController extends Controller
      */
     public function update(UpdateWordRequest $request, Word $word)
     {
-        //
+        $validated = $request->validated();
+        $word->update($validated);
+
+        return redirect(route('words.index'))
+            ->with('updated', $word->word)
+            ->with('messageType', ['updated', true]);
+
+    }
+
+    public function delete(Word $word) {
+
+        return view('words.delete', compact(['word']));
     }
 
     /**
@@ -61,6 +81,8 @@ class WordController extends Controller
      */
     public function destroy(Word $word)
     {
-        //
+        $oldWord = $word;
+        $word->delete();
+        return redirect(route('words.index'))->with('deleted', $oldWord->word);
     }
 }

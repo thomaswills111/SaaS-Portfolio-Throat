@@ -1,8 +1,9 @@
 <x-guest-layout>
     <x-slot name="header">
-        <h2 class="font-semibold leading-tight
-                   text-xl text-gray-800 dark:text-gray-200">
-            {{ __('Word Types') }}
+        <h2 class="font-semibold
+        text-xl text-gray-800
+        dark:text-gray-200 leading-tight">
+            {{ __('Words') }}
         </h2>
     </x-slot>
 
@@ -13,53 +14,41 @@
         </h3>
 
         <p class="text-lg bg-red-500 text-white py-6 px-4 mb-6 rounded-lg">Please confirm you wish to delete this
-            word type.</p>
-
+            word.</p>
         <div class="flex flex-row gap-4 rounded-md
-                    bg-gray-200 dark:bg-gray-900">
+        bg-gray-200 dark:bg-gray-800">
             <p class="p-2 w-1/6 rounded-l-md
-                      bg-gray-500 dark:bg-gray-800
-                      text-gray-100">
-                Name
+                     bg-gray-500 dark:bg-gray-800
+                     text-gray-100 dark:text-gray-200">
+                Name:
             </p>
-            <p class="p-2 w-5/6 dark:text-gray-100">{{ $wordType->name }}</p>
+            <p class="p-2 w-5/6 dark:text-gray-200">{{$word->word}}</p>
         </div>
 
         <div class="flex flex-row gap-4 rounded-md
-                    bg-gray-200 dark:bg-gray-900">
+        bg-gray-200 dark:bg-gray-800">
             <p class="p-2 w-1/6 rounded-l-md
-                      bg-gray-500 dark:bg-gray-800
-                      text-gray-100">
-                Name
+                     bg-gray-500 dark:bg-gray-800
+                     text-gray-100 dark:text-gray-200">
+                Created At:
             </p>
-            <p class="p-2 w-5/6 dark:text-gray-100">{{ $wordType->code }}</p>
+            <p class="p-2 w-5/6 dark:text-gray-200">{{$word->created_at}}</p>
+
         </div>
 
         <div class="flex flex-row gap-4 rounded-md
-                    bg-gray-200 dark:bg-gray-900">
+        bg-gray-200 dark:bg-gray-800">
             <p class="p-2 w-1/6 rounded-l-md
-                      bg-gray-500 dark:bg-gray-800
-                      text-gray-100">
-                Created At
+                     bg-gray-500 dark:bg-gray-800
+                     text-gray-100 dark:text-gray-200">
+                Updated At:
             </p>
-            <p class="p-2 w-5/6 dark:text-gray-100" >{{ $wordType->created_at }} </p>
+            <p class="p-2 w-5/6 dark:text-gray-200" >{{$word->updated_at}}</p>
         </div>
-
-        <div class="flex flex-row gap-4 rounded-md
-                    bg-gray-200 dark:bg-gray-900">
-            <p class="p-2 w-1/6 rounded-l-md
-                      bg-gray-500 dark:bg-gray-800
-                      text-gray-100">
-                Updated At
-            </p>
-            <p class="p-2 w-5/6 dark:text-gray-100" >{{ $wordType->updated_at }} </p>
-        </div>
-
-        <p class="flex flex-row md:w-13 w-full rounded-md">
 
         <form
             method="POST"
-            action="{{ route('wordTypes.destroy', ['wordType'=>$wordType]) }}"
+            action="{{ route('words.destroy', ['word'=>$word]) }}"
             class="flex flex-col w-full gap-4">
 
             @csrf
@@ -91,7 +80,5 @@
             </div>
 
         </form>
-
     </section>
-
 </x-guest-layout>

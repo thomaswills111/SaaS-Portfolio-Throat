@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             RatingSeeder::class,
             WordTypeSeeder::class,
-            //WordSeeder::class,
-            //DefinitionSeeder::class,
+            WordSeeder::class,
+            DefinitionSeeder::class,
         ]);
     }
 }

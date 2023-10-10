@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Definition;
 use App\Models\Rating;
 use App\Http\Requests\StoreRatingRequest;
 use App\Http\Requests\UpdateRatingRequest;
+use Illuminate\Database\Eloquent\Model;
 
 class RatingController extends Controller
 {
@@ -20,18 +22,23 @@ class RatingController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Definition $definition)
     {
-        return view('ratings.add');
+        return view('ratings.add', ['definition' => $definition]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRatingRequest $request)
+    public function store(StoreRatingRequest $request, Definition $definition)
     {
+        //dd($definition);
         $details = $request->validated(); // Goes to error page if not validated
         $rating = Rating::create($details);
+
+        //dd($rating['id']);
+        $definition->ratings()->attach([$rating['id'] => ['value' => $rating['stars']]]);
+
         return redirect(route('ratings.index'))
             ->with('created', $rating->name)
             ->with('messages', ['created', true]); // inserting the rating's name into a new variable named 'created'
@@ -45,7 +52,7 @@ class RatingController extends Controller
      */
     public function show(Rating $rating)
     {
-        dd($rating);
+        dd($rating->definitions);
         return view('ratings.show', compact(['rating']));
     }
 

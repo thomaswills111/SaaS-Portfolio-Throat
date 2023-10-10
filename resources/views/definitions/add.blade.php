@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold leading-tight
                    text-xl text-gray-800 dark:text-gray-200">
-            {{ __('Ratings') }}
+            {{ __('Definitions') }}
         </h2>
     </x-slot>
 
@@ -20,79 +20,90 @@
             </div>
         @endif
 
-
         <form
             method="POST"
-            action="{{ route('ratingsDefinition.store', ['definition'=>$definition]) }}"
+            action="{{ route('definitions.store') }}"
             class="flex flex-col w-full gap-4">
 
             @csrf
             @method('POST')
 
+            @if($word)
+                <div class="flex flex-row gap-4 rounded-md
+                    bg-gray-200 dark:bg-gray-900">
+                    <label
+                        for="Word"
+                        class="p-2 w-1/6 rounded-l-md
+                      bg-gray-500 dark:bg-gray-800
+                      text-gray-100">
+                        {{ __("Word") }}
+                    </label>
+                    <input
+                        id="Word"
+                        name="word"
+                        type="text"
+                        class="p-2 w-5/6 bg-gray-200 dark:bg-gray-900 rounded-r-md"
+                        readonly
+                        value="{{$word->word}}"/>
+                </div>
+            @else
+                <div class="flex flex-row gap-4 rounded-md
+                    bg-gray-200 dark:bg-gray-900">
+                    <label
+                        for="Word"
+                        class="p-2 w-1/6 rounded-l-md
+                      bg-gray-500 dark:bg-gray-800
+                      text-gray-100">
+                        {{ __("Word") }}
+                    </label>
+                    <input
+                        id="Word"
+                        name="word"
+                        type="text"
+                        class="p-2 w-5/6 bg-gray-200 dark:bg-gray-900 rounded-r-md"
+                        value="{{ old('word') }}"/>
+                </div>
+            @endif
+
+
             <div class="flex flex-row gap-4 rounded-md
                     bg-gray-200 dark:bg-gray-900">
                 <label
-                    for="Name"
+                    for="WordType"
                     class="p-2 w-1/6 rounded-l-md
                       bg-gray-500 dark:bg-gray-800
                       text-gray-100">
-                    {{ __("Name") }}
+                    {{ __("Word Type") }}
                 </label>
                 <input
-                    id="Name"
-                    name="name"
+                    id="WordType"
+                    name="word_type"
                     type="text"
-                    class="p-2 w-5/6 bg-gray-200 dark:bg-gray-900 rounded-r-md dark:text-gray-100"
-                    value="{{ old('name')}}"/>
-            </div>
-
-            <div class="flex flex-row gap-4 rounded-md
-                    bg-gray-200 dark:bg-gray-900">
-                <label for="Icon"
-                       class="p-2 w-1/6 rounded-l-md
-                      bg-gray-500 dark:bg-gray-800
-                      text-gray-100 ">
-                    {{ __('Icon') }}
-                </label>
-                <select
-                    id="Icon"
-                    name="icon"
-                    class="p-2 w-5/6 bg-gray-200 dark:bg-gray-900 rounded-r-md dark:text-gray-100">
-                    <option value="lemon" @if(old('icon')=='lemon') selected @endif>Lemon</option>
-                    <option value="star" @if(old('icon')=='star') selected @endif>Star</option>
-                    <option value="splotch" @if(old('icon')=='splotch') selected @endif>Splotch</option>
-                    <option value="poo" @if(old('icon')=='poo') selected @endif>Poo</option>
-                    <option value="cloud" @if(old('icon')=='cloud') selected @endif>Cloud</option>
-                    <option value="ghost" @if(old('icon')=='ghost') selected @endif>Ghost</option>
-                    <option value="thumbs-up" @if(old('icon')=='thumbs-up') selected @endif>Thumbs Up
-                    </option>
-                    <option value="thumbs-down" @if(old('icon')=='thumbs-down') selected @endif>Thumbs
-                        Down
-                    </option>
-                    <option value="" @if(old('icon')=='') selected @endif disabled>Select an icon
-                    </option>
-                </select>
+                    class="p-2 w-5/6 bg-gray-200 dark:bg-gray-900 rounded-r-md"
+                    value="{{ old('wordType') }}"/>
             </div>
 
             <div class="flex flex-row gap-4 rounded-md
                     bg-gray-200 dark:bg-gray-900">
                 <label
-                    for=Stars"
+                    for="Definition"
                     class="p-2 w-1/6 rounded-l-md
                       bg-gray-500 dark:bg-gray-800
                       text-gray-100">
-                    {{__('Stars')}}
+                    {{ __("Definition") }}
                 </label>
-                <input type="range"
-                       id="Stars"
-                       name="stars"
-                       class="p-2 w-5/6 bg-gray-200 dark:bg-gray-900 rounded-r-md"
-                       min="0" max="10" value="{{ old('stars')}}">
+                <textarea
+                    id="Definition"
+                    class="p-2 w-5/6 bg-gray-200 dark:bg-gray-900 rounded-r-md"
+                    name="definition"
+                    rows="2"
+                >{{old('definition')}}</textarea>
             </div>
+
 
             <div class="flex flex-row rounded-md">
 
-                <a href="{{ route('definitions.index') }}"
+                <a href="{{ route('wordTypes.index') }}"
                    class="text-center p-2 grow rounded-l-md
                           text-white
                           bg-sky-500 hover:bg-sky-900
