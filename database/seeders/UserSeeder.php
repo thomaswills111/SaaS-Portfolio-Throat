@@ -16,29 +16,25 @@ class UserSeeder extends Seeder
 
         $seedUsers = [
             [
-                'name' => 'Ad Ministrator',
-                'email' => 'ad.ministrator@example.com',
-                'password' => 'Password1',
-                'roles' => ['admin', 'member', 'staff'],
+                'name' => 'user',
+                'email' => 'user@user.com',
+                'password' => 'password',
             ],
             [
                 'name' => 'STUDENT_GIVEN_NAME',
                 'email' => 'STUDENT_GIVEN_NAME@example.com',
                 'email_verified_at' => now(),
                 'password' => 'Secret1',
-                'roles' => ['admin', 'staff', 'member'],
             ],
             [
                 'name' => 'Annie Wun',
                 'email' => 'annie.wun@example.com',
                 'password' => 'Password1',
-                'roles' => ['member'],
             ],
             [
                 'name' => 'Andy Mann',
                 'email' => 'andy.mann@example.com',
                 'password' => 'Password1',
-                'roles' => ['staff', 'member'],
             ],
         ];
 
@@ -48,7 +44,7 @@ class UserSeeder extends Seeder
                 'name' => $newUser['name'],
                 'email' => $newUser['email'],
                 'password' => $newUser['password'],
-            ]);
+            ])->assignRole('user');
 
             //            foreach ($newUser['roles'] as $role) {
             //                $newRole = Role::whereName($role)->first();

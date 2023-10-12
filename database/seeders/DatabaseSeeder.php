@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,11 +21,15 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            PermissionSeeder::class,
+            RoleSeeder::class,
+            AdminSeeder::class,
             UserSeeder::class,
             RatingSeeder::class,
             WordTypeSeeder::class,
             WordSeeder::class,
             DefinitionSeeder::class,
+
         ]);
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Definition;
 use App\Models\Rating;
 use App\Http\Requests\StoreRatingRequest;
 use App\Http\Requests\UpdateRatingRequest;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 
 class RatingController extends Controller
@@ -22,27 +23,29 @@ class RatingController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Definition $definition)
+    public function create(Definition $definition = null)
     {
+        if($definition) {
+            $ratings = Rating::all();
+            return view('ratings.add', ['definition' => $definition, 'ratings' => $ratings]);
+        }
         return view('ratings.add', ['definition' => $definition]);
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRatingRequest $request, Definition $definition)
+    public function store(StoreRatingRequest $request)
     {
-        //dd($definition);
         $details = $request->validated(); // Goes to error page if not validated
         $rating = Rating::create($details);
-
-        //dd($rating['id']);
-        $definition->ratings()->attach([$rating['id'] => ['value' => $rating['stars']]]);
 
         return redirect(route('ratings.index'))
             ->with('created', $rating->name)
             ->with('messages', ['created', true]); // inserting the rating's name into a new variable named 'created'
     }
+
 
     /**
      * Display the specified resource.
@@ -52,7 +55,6 @@ class RatingController extends Controller
      */
     public function show(Rating $rating)
     {
-        dd($rating->definitions);
         return view('ratings.show', compact(['rating']));
     }
 
