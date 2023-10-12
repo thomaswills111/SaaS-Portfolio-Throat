@@ -1,19 +1,25 @@
 <x-guest-layout>
     <x-slot name="header">
-        <div class="flex flex-row">
-            <h2 class="font-semibold
-        text-xl text-gray-800
-        dark:text-gray-200 leading-tight
-        grow">
-                {{ __('Definitions') }}
-            </h2>
+        <div class="flex flex-row justify-between">
+            <div class="flex flex-row">
+                <h2 class="font-semibold
+                            text-xl text-gray-800
+                            dark:text-gray-200 leading-tight pr-10">
+                    {{ __('THROAT') }}
+                </h2>
+                <a class="text-gray-800 dark:text-gray-100 px-2" href=" {{route('words.index')}}">Words</a>
+                <a class="text-gray-800 dark:text-gray-100 px-2" href="{{route('wordTypes.index')}}">Word Types</a>
+                <a class="text-gray-800 dark:text-gray-100 px-2" href="{{route('definitions.index')}}">Definitions</a>
+                <a class="text-gray-800 dark:text-gray-100  pl-2 pr-8" href="{{route('ratings.index')}}">Ratings</a>
+            </div>
             <p class="text-gray-100">
                 <a href="{{ route('definitions.create') }}"
-                class="rounded-lg p-2 bg-blue-900
+                   class="rounded-lg p-2 bg-blue-900
                 transition ease-in-out duration-500
                 hover:bg-blue-100 hover:text-blue-900"
                 >Add New Definition</a>
-            </p></div>
+            </p>
+        </div>
     </x-slot>
 
     @if(session()->has('created'))
@@ -21,6 +27,22 @@
             <p class="w-full p-4 bg-green-500 text-white rounded">
                 <i class="text-xl fa fa-check-circle text-green-200 bg-green-800 rounded-full mr-4 p-2"></i>
                 The definition for {{ session()->get('created') }} was created successfully.
+            </p>
+        </div>
+        @endif
+    @if(session()->has('rated'))
+        <div class="w-full p-2 m-0 mb-6">
+            <p class="w-full p-4 bg-green-500 text-white rounded">
+                <i class="text-xl fa fa-check-circle text-green-200 bg-green-800 rounded-full mr-4 p-2"></i>
+                The definition {{ session()->get('rated') }} was rated successfully.
+            </p>
+        </div>
+        @endif
+    @if(session()->has('ratingCreated'))
+        <div class="w-full p-2 m-0 mb-6">
+            <p class="w-full p-4 bg-green-500 text-white rounded">
+                <i class="text-xl fa fa-check-circle text-green-200 bg-green-800 rounded-full mr-4 p-2"></i>
+                The rating {{ session()->get('ratingCreated') }} was created successfully.
             </p>
         </div>
         @endif
@@ -60,7 +82,17 @@
                 <td class="p-2">{{$definition->word->word}}</td>
                 <td class="p-2">{{$definition->wordType->name}}</td>
                 <td class="p-2">{{$definition->definition}}</td>
-                <td class="p-2">{{$definition->ratings->avg('stars')}}</td>
+                <td>
+                    @if(count($definition->ratings) > 0)
+                        @for($count=1; $count <= ($definition->ratings->avg('stars')/2); $count++)
+                            <i class="fa fa-star"></i>
+                        @endfor
+                            ({{round($definition->ratings->avg('stars'), 2)}})
+                    @else
+                        <p>Unrated</p>
+                    @endif
+                </td>
+{{--                <td class="p-2">{{$definition->ratings->avg('stars')}}</td>--}}
                 <td class="p-2 flex flex-row">
                     <a href="{{ route('definitions.show',['definition'=>$definition]) }}"
                        class="text-center p-2 grow rounded-l-md bg-green-500 text-white
@@ -69,12 +101,12 @@
                         <i class="fa fa-eye"></i>
                         <span class="sr-only">View</span>
                     </a>
-                    <a href="{{ route('ratingsDefinition.create', ['definition'=>$definition]) }}"
+                    <a href="{{ route('definitions.rate', ['definition'=>$definition]) }}"
                        class="text-center p-2 grow bg-yellow-500 text-white
                    dark:bg-yellow-800 hover:bg-yellow-900 dark:hover:bg-yellow-500
                    transition ease-in-out duration-350">
                         <i class="fa fa-star"></i>
-                        <span class="sr-only">View</span>
+                        <span class="sr-only">Rate</span>
                     </a>
                     <a href="{{route('definitions.edit', ['definition'=>$definition])}}"
                        class="text-center p-2 grow bg-orange-500 text-white

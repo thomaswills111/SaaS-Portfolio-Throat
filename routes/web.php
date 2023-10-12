@@ -20,8 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('ratings', RatingController::class);
 Route::get('/ratings/{rating}/delete', [RatingController::class, 'delete'])->name('ratings.delete');
-Route::get('/ratings/create/{definition}', [RatingController::class, 'create'])->name('ratingsDefinition.create');
-Route::post('/ratings/{definition}', [RatingController::class, 'store'])->name('ratingsDefinition.store');
+// Route::get('/ratings/create/{definition}', [RatingController::class, 'create'])->name('ratingsDefinition.create');
+// Route::post('/ratings/create/{definition}', [RatingController::class, 'store'])->name('newRatingsDefinition.store');
+// Route::post('/ratings/{definition}', [RatingController::class, 'rateDefinition'])->name('ratingsDefinition.store');
 
 
 Route::resource('wordTypes', WordTypeController::class);
@@ -29,7 +30,10 @@ Route::get('/wordTypes/{wordType}/delete', [WordTypeController::class, 'delete']
 
 Route::resource('definitions', DefinitionController::class);
 Route::get('/definitions/{definition}/delete', [DefinitionController::class, 'delete'])->name('definitions.delete');
+Route::get('/definitions/{definition}/rate', [DefinitionController::class, 'rate'])->name('definitions.rate');
+Route::post('/definitions/{definition}/rate', [DefinitionController::class, 'storeDefinitionRating'])->name('definitionRating.store');
 Route::get('/definitions/create/{word}', [DefinitionController::class, 'create'])->name('definitionsWord.create');
+Route::post('/definitions/rate/{definition}', [DefinitionController::class, 'storeNewDefinitionRating'])->name('newDefinitionRating.store');
 
 Route::resource('words', WordController::class);
 Route::get('/words/{word}/delete', [WordController::class, 'delete'])->name('words.delete');

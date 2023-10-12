@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('definition_rating', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('definition_id');
-            $table->foreignId('rating_id');
-            $table->foreignId('user_id')->default(0);
+            $table->foreignId('definition_id')->constrained()->onDelete('cascade');
+            $table->foreignId('rating_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->default(0)->constrained()->onDelete('cascade');
             $table->tinyInteger('value')->default(0);
             $table->timestamps();
         });
