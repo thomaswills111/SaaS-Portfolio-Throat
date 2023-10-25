@@ -39,11 +39,12 @@ class DefinitionController extends Controller
         return view('definitions.rate', (['definition'=>$definition, 'ratings'=>$ratings]));
     }
 
-    public function storeDefinitionRating(Request $request, Definition $definition )
+    public function storeDefinitionRating(Definition $definition, Rating $rating)
     {
-        $ratings = Rating::all();
+//        dd($rating);
+//        $ratings = Rating::all();
 
-        $rating = $ratings->firstWhere('name', $request['name']);
+//        $rating = $ratings->firstWhere('name', $request['name']);
 
         $definition->ratings()->attach([$rating['id'] => ['value' => $rating['stars']]]);
 

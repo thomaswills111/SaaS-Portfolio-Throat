@@ -1,17 +1,11 @@
-<x-guest-layout>
+<x-app-layout>
     <x-slot name="header">
         <div class="flex flex-row justify-between">
-            <div class="flex flex-row w-1/2">
-                <h2 class="font-semibold
+            <h2 class="font-semibold
                             text-xl text-gray-800
                             dark:text-gray-200 leading-tight pr-10">
-                    {{ __('THROAT') }}
-                </h2>
-                <a class="text-gray-800 dark:text-gray-100 px-2" href=" {{route('words.index')}}">Words</a>
-                <a class="text-gray-800 dark:text-gray-100 px-2" href="{{route('wordTypes.index')}}">Word Types</a>
-                <a class="text-gray-800 dark:text-gray-100 px-2" href="{{route('definitions.index')}}">Definitions</a>
-                <a class="text-gray-800 dark:text-gray-100  pl-2 pr-8" href="{{route('ratings.index')}}">Ratings</a>
-            </div>
+                {{ __('RATINGS') }}
+            </h2>
         </div>
     </x-slot>
 
@@ -68,31 +62,31 @@
                      text-gray-100 dark:text-gray-200">
                 Updated At:
             </p>
-            <p class="p-2 w-5/6 dark:text-gray-200" >{{$rating->updated_at}}</p>
+            <p class="p-2 w-5/6 dark:text-gray-200">{{$rating->updated_at}}</p>
         </div>
 
-            <p class="flex flex-row md:w-13 w-full rounded-md">
-                <a href="{{route('ratings.index')}}"
-                   class="text-center p-2 grow rounded-l-md bg-sky-500 text-white
+        <p class="flex flex-row md:w-13 w-full rounded-md">
+            <a href="{{route('ratings.index')}}"
+               class="text-center p-2 grow rounded-l-md bg-sky-500 text-white
                    dark:bg-sky-800 hover:bg-sky-900 dark:hover:bg-sky-500
                    transition ease-in-out duration-350">
-                    <i class="fa fa-arrow-rotate-back"></i>
-                    <span class="sr-only">Back</span>
-                </a>
-                <a href="{{ route('ratings.edit', ['rating'=>$rating])}}"
-                   class="text-center p-2 grow bg-orange-500 text-white
+                <i class="fa fa-arrow-rotate-back"></i>
+                <span class="sr-only">Back</span>
+            </a>
+            <a href="{{ route('ratings.edit', ['rating'=>$rating])}}"
+               class="text-center p-2 grow bg-orange-500 text-white
                    dark:bg-orange-800 hover:bg-orange-900 dark:hover:bg-orange-500
                    transition ease-in-out duration-350">
-                    <i class="fa fa-edit"></i>
-                    <span class="sr-only">Edit</span>
-                </a>
-                <a href="{{route('ratings.destroy', ['rating'])}}"
-                   class="text-center p-2 grow rounded-r-md bg-red-500 text-white
+                <i class="fa fa-edit"></i>
+                <span class="sr-only">Edit</span>
+            </a>
+            <a href="{{route('ratings.destroy', ['rating'])}}"
+               class="text-center p-2 grow rounded-r-md bg-red-500 text-white
                    dark:bg-red-800 hover:bg-red-900 dark:hover:bg-red-500
                    transition ease-in-out duration-350">
-                    <i class="fa fa-times"></i>
-                    <span class="sr-only">Delete</span>
-                </a>
-            </p>
+                <i class="fa fa-times"></i>
+                <span class="sr-only">Delete</span>
+            </a>
+        </p>
     </section>
-</x-guest-layout>
+</x-app-layout>
