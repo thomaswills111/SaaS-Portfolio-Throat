@@ -1,17 +1,11 @@
-<x-guest-layout>
+<x-app-layout>
     <x-slot name="header">
         <div class="flex flex-row justify-between">
-            <div class="flex flex-row w-1/2">
-                <h2 class="font-semibold
+            <h2 class="font-semibold
                             text-xl text-gray-800
                             dark:text-gray-200 leading-tight pr-10">
-                    {{ __('THROAT') }}
-                </h2>
-                <a class="text-gray-800 dark:text-gray-100 px-2" href=" {{route('words.index')}}">Words</a>
-                <a class="text-gray-800 dark:text-gray-100 px-2" href="{{route('wordTypes.index')}}">Word Types</a>
-                <a class="text-gray-800 dark:text-gray-100 px-2" href="{{route('definitions.index')}}">Definitions</a>
-                <a class="text-gray-800 dark:text-gray-100  pl-2 pr-8" href="{{route('ratings.index')}}">Ratings</a>
-            </div>
+                {{ __('WORDS') }}
+            </h2>
         </div>
     </x-slot>
 
@@ -75,4 +69,4 @@
                 </a>
             </p>
     </section>
-</x-guest-layout>
+</x-app-layout>

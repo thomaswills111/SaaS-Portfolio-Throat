@@ -30,7 +30,7 @@ Route::get('/wordTypes/{wordType}/delete', [WordTypeController::class, 'delete']
 Route::resource('definitions', DefinitionController::class);
 Route::get('/definitions/{definition}/delete', [DefinitionController::class, 'delete'])->name('definitions.delete');
 Route::get('/definitions/{definition}/rate', [DefinitionController::class, 'rate'])->name('definitions.rate');
-Route::post('/definitions/{definition}/rate', [DefinitionController::class, 'storeDefinitionRating'])->name('definitionRating.store');
+Route::post('/definitions/{definition}/rate/{rating}', [DefinitionController::class, 'storeDefinitionRating'])->name('definitionRating.store');
 Route::get('/definitions/create/{word}', [DefinitionController::class, 'create'])->name('definitionsWord.create');
 Route::post('/definitions/rate/{definition}', [DefinitionController::class, 'storeNewDefinitionRating'])->name('newDefinitionRating.store');
 
