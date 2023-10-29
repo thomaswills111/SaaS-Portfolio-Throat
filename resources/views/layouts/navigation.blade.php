@@ -14,7 +14,19 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @auth()
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    {{ __('Dashboard') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('words.index')" :active="request()->routeIs('words.index')">
+                        {{ __('Words') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('definitions.index')" :active="request()->routeIs('definitions.index')">
+                        {{ __('Definitions') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('wordTypes.index')" :active="request()->routeIs('wordTypes.index')">
+                        {{ __('Word Types') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('ratings.index')" :active="request()->routeIs('ratings.index')">
+                        {{ __('Ratings') }}
                     </x-nav-link>
                     @endauth
                     <x-nav-link :href="route('words.index')" :active="request()->routeIs('words.index')">
