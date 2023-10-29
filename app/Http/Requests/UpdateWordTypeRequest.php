@@ -22,14 +22,34 @@ class UpdateWordTypeRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => [
-                'required',
-                Rule::unique('ratings', 'name'),
-                'min:2',
-                'max:32',
-            ],
-            'code' => ['required', 'max:2'],
-        ];
+        $method = $this->method();
+
+        if ($method == 'PUT') {
+            return [
+                'name' => [
+                    'required',
+                    Rule::unique('ratings', 'name'),
+                    'min:2',
+                    'max:32',
+                ],
+                'code' => ['required', 'max:2'],
+            ];
+        }
+        else
+        {
+            return [
+                'name' => [
+                    'sometimes',
+                    'required',
+                    Rule::unique('ratings', 'name'),
+                    'min:2',
+                    'max:32',
+                ],
+                'code' => [
+                    'sometimes',
+                    'required',
+                    'max:2'],
+            ];
+        }
     }
 }
