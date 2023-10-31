@@ -41,11 +41,6 @@ class DefinitionController extends Controller
 
     public function storeDefinitionRating(Definition $definition, Rating $rating)
     {
-//        dd($rating);
-//        $ratings = Rating::all();
-
-//        $rating = $ratings->firstWhere('name', $request['name']);
-
         $definition->ratings()->attach([$rating['id'] => ['value' => $rating['stars']]]);
 
         return redirect(route('definitions.index'))
@@ -66,10 +61,6 @@ class DefinitionController extends Controller
             ->with('messages', ['created', true]); // inserting the rating's name into a new variable named 'created'
     }
 
-    public function rateStoreNewRating()
-    {
-
-    }
 
     /**
      * Store a newly created resource in storage.

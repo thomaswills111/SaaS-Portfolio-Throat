@@ -40,7 +40,7 @@ class Word extends Model
     protected $casts = [
     ];
 
-    public function definition() {
-        return $this->hasOne(Definition::class);
+    public function definitions() {
+        return $this->hasMany(Definition::class);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\DefinitionController;
+use App\Http\Controllers\API\WordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\wordTypeController;
@@ -20,3 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('wordTypes', WordTypeController::class);
+Route::apiResource('words', WordController::class);
+Route::apiResource('definitions', DefinitionController::class);
+Route::post('/definitions/{definition}/rate', [DefinitionController::class, 'addRating']);
+Route::put('/definitions/{definition}/rate/{rating}', [DefinitionController::class, 'updateRating']);
+Route::delete('/definitions/{definition}/rate/{rating}', [DefinitionController::class, 'removeRating']);
