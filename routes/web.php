@@ -3,6 +3,7 @@
 use App\Http\Controllers\DefinitionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\StaticPageController;
 use App\Http\Controllers\WordController;
 use App\Http\Controllers\WordTypeController;
 use Illuminate\Support\Facades\Route;
@@ -50,5 +51,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/', [StaticPageController::class, 'home'])->name('static.home');
+Route::get('/privacy', [StaticPageController::class, 'privacy'])->name('static.privacy');
+Route::get('/contact', [StaticPageController::class, 'contact'])->name('static.contact');
+Route::get('/termsAndConditions', [StaticPageController::class, 'terms'])->name('static.terms');
+Route::get('/colours', [StaticPageController::class, 'colours'])->name('static.colours');
+Route::get('/icons', [StaticPageController::class, 'icons'])->name('static.icons');
 
 require __DIR__.'/auth.php';

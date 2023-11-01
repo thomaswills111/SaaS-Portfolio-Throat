@@ -13,7 +13,8 @@ class WordTypeSeeder extends Seeder
     public function run(): void
     {
         $seedTypes = [
-            ['id' => 1, 'code' => 'OT', 'name' => 'Other'],
+            ['id' => 1, 'code' => 'UK', 'name' => 'Unknown'],
+            ['id' => 2, 'code' => 'OT', 'name' => 'Other'],
             ['id' => 10, 'code' => 'AC', 'name' => 'Acronym'],
             ['id' => 11, 'code' => 'TE', 'name' => 'Term'],
             ['id' => 12, 'code' => 'AB', 'name' => 'Abbreviation'],

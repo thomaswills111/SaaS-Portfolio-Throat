@@ -37,5 +37,8 @@ class WordType extends Model
     protected $casts = [
     ];
 
+    public function definitions() {
+        return $this->hasMany(Definition::class);
+    }
 
 }

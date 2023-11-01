@@ -12,7 +12,7 @@
     <section class="w-full p-6 flex flex-col gap-4">
         <h3 class="text-lg text-gray-800 dark:text-gray-200
                    font-bold">
-            {{ __('Choose an existing rating') }}
+            {{ __('Choose a rating') }}
         </h3>
 
         @if($errors->any())
@@ -36,7 +36,7 @@
                     <td class="p-2">Unrate</td>
                     <td class="p-2"></td>
                     <td class="p-2 flex flex-row">
-                        <form class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md" method="POST" action="#" onsubmit="return confirm('Are you sure?');">
+                        <form class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md" method="POST" action="#";">
                             @csrf
                             @method('POST')
                             <button type="submit">Unrate</button>
@@ -53,7 +53,7 @@
                         ({{$rating->stars/2}})
                     </td>
                     <td class="p-2 flex flex-row">
-                        <form class="px-4 py-2 bg-yellow-500 hover:bg-red-700 text-white rounded-md" method="POST" action="{{ route('definitionRating.store', ['definition'=>$definition, 'rating'=>$rating]) }}" onsubmit="return confirm('Are you sure?');">
+                        <form class="px-4 py-2 bg-yellow-500 hover:bg-red-700 text-white rounded-md" method="POST" action="{{ route('definitionRating.store', ['definition'=>$definition, 'rating'=>$rating]) }}">
                             @csrf
                             @method('POST')
                             <button type="submit"

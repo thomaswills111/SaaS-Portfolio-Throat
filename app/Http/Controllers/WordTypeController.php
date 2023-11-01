@@ -83,6 +83,13 @@ class WordTypeController extends Controller
     {
         $oldWordType = $wordType;
         $wordType->delete();
+
+        $definitions = $wordType->definitions;
+        foreach($definitions as $definition) {
+            $unknownWordType = WordType::firstOrCreate(['name' => 'Unknown', 'code' => 'UK']);
+            $definition->update(['word_type_id'=>$unknownWordType->id]);
+        }
+
         return redirect(route('wordTypes.index'))->with('deleted', $oldWordType->name);
     }
 }

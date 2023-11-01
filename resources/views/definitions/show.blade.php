@@ -77,14 +77,14 @@
                    class="text-center p-2 grow bg-orange-500 text-white
                    dark:bg-orange-800 hover:bg-orange-900 dark:hover:bg-orange-500
                    transition ease-in-out duration-350">
-                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-pencil"></i>
                     <span class="sr-only">Edit</span>
                 </a>
                 <a href="{{route('definitions.delete', ['definition'=>$definition])}}"
                    class="text-center p-2 grow rounded-r-md bg-red-500 text-white
                    dark:bg-red-800 hover:bg-red-900 dark:hover:bg-red-500
                    transition ease-in-out duration-350">
-                    <i class="fa fa-times"></i>
+                    <i class="fa fa-trash"></i>
                     <span class="sr-only">Delete</span>
                 </a>
             </p>

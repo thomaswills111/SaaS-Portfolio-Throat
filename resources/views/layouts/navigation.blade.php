@@ -1,36 +1,34 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-screen mx-auto px-4 sm:px-6 lg:px-8 dark:bg-gray-800">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800"/>
+                    <a href="{{ route('static.home') }}">
+                        <x-application-logo class="block h-9 w-auto fill-current dark:text-gray-100 text-gray-800"/>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @auth()
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link class="dark:text-gray-300" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
                     </x-nav-link>
                     @endauth
-                    <x-nav-link :href="route('words.index')" :active="request()->routeIs('words.index')">
+                    <x-nav-link class="dark:text-gray-300" :href="route('words.index')" :active="request()->routeIs('words.index')">
                         {{ __('Words') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('definitions.index')" :active="request()->routeIs('definitions.index')">
+                    <x-nav-link class="dark:text-gray-300" :href="route('definitions.index')" :active="request()->routeIs('definitions.index')">
                         {{ __('Definitions') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('wordTypes.index')" :active="request()->routeIs('wordTypes.index')">
+                    <x-nav-link class="dark:text-gray-300" :href="route('wordTypes.index')" :active="request()->routeIs('wordTypes.index')">
                         {{ __('Word Types') }}
                     </x-nav-link>
-                        @hasrole('admin')
-                    <x-nav-link :href="route('ratings.index')" :active="request()->routeIs('ratings.index')">
+                    <x-nav-link class="dark:text-gray-300" :href="route('ratings.index')" :active="request()->routeIs('ratings.index')">
                         {{ __('Ratings') }}
                     </x-nav-link>
-                    @endhasrole
                 </div>
             </div>
 

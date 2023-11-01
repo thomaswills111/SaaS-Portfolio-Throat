@@ -25,11 +25,10 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             AdminSeeder::class,
             UserSeeder::class,
-            RatingSeeder::class,
             WordTypeSeeder::class,
             WordSeeder::class,
             DefinitionSeeder::class,
-
+            RatingSeeder::class,
         ]);
     }
 }

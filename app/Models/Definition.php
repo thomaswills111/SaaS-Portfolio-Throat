@@ -52,6 +52,8 @@ class Definition extends Model
         return $this->belongsToMany(Rating::class);
     }
 
-
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 
 }

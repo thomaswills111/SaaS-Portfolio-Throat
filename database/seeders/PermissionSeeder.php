@@ -24,6 +24,7 @@ class PermissionSeeder extends Seeder
             'create wordTypes',
             'edit wordTypes',
             'delete wordTypes',
+            'create ratings',
 
             'edit users',
             'ban users',

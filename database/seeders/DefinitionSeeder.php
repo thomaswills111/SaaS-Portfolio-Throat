@@ -21,6 +21,13 @@ class DefinitionSeeder extends Seeder
                'word_type_id' => 15,
                'appropriate' => true,
            ],
+           [
+               'word_id' => 1,
+               'definition' => 'A protocol for transferring files',
+               'user_id' => 0,
+               'word_type_id' => 15,
+               'appropriate' => true,
+           ],
 
         ];
 
