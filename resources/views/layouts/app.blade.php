@@ -52,6 +52,12 @@
                 <li>
                     <a class="dark:text-gray-400 text-s" href="{{route('static.privacy')}}">Privacy Policy</a>
                 </li>
+                <li>
+                    <a class="dark:text-gray-400 text-s" href="{{route('static.colours')}}">Colours</a>
+                </li>
+                <li>
+                    <a class="dark:text-gray-400 text-s" href="{{route('static.icons')}}">Icons</a>
+                </li>
             </ul>
         </div>
     </div>
