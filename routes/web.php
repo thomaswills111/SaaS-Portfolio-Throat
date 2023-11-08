@@ -19,44 +19,78 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('ratings', RatingController::class);
-Route::get('/ratings/{rating}/delete', [RatingController::class, 'delete'])->name('ratings.delete');
-// Route::get('/ratings/create/{definition}', [RatingController::class, 'create'])->name('ratingsDefinition.create');
-// Route::post('/ratings/create/{definition}', [RatingController::class, 'store'])->name('newRatingsDefinition.store');
-// Route::post('/ratings/{definition}', [RatingController::class, 'rateDefinition'])->name('ratingsDefinition.store');
+//Route::middleware('auth')->group(function () {
+//    Route::resource('ratings', RatingController::class)->except(['index', 'show']);
+//    Route::get('/ratings/{rating}/delete', [RatingController::class, 'delete'])->name('ratings.delete');
 
-Route::resource('wordTypes', WordTypeController::class);
-Route::get('/wordTypes/{wordType}/delete', [WordTypeController::class, 'delete'])->name('wordTypes.delete');
+//Route::get('/ratings', [RatingController::class, 'index'])->middleware('auth')->name('ratings.index');
 
-Route::resource('definitions', DefinitionController::class);
-Route::get('/definitions/{definition}/delete', [DefinitionController::class, 'delete'])->name('definitions.delete');
-Route::get('/definitions/{definition}/rate', [DefinitionController::class, 'rate'])->name('definitions.rate');
-Route::post('/definitions/{definition}/rate/{rating}', [DefinitionController::class, 'storeDefinitionRating'])->name('definitionRating.store');
-Route::get('/definitions/create/{word}', [DefinitionController::class, 'create'])->name('definitionsWord.create');
-Route::post('/definitions/rate/{definition}', [DefinitionController::class, 'storeNewDefinitionRating'])->name('newDefinitionRating.store');
+Route::middleware('auth')->group(function () {
+    Route::resource('ratings', RatingController::class)
+        ->except(['index', 'show']);
+    Route::resource('words', WordController::class)
+        ->except(['index', 'show']);
+    Route::resource('wordTypes', WordTypeController::class)
+        ->except(['index', 'show']);
+    Route::resource('definitions', DefinitionController::class)
+        ->except(['index', 'show']);
 
-Route::resource('words', WordController::class);
-Route::get('/words/{word}/delete', [WordController::class, 'delete'])->name('words.delete');
+    Route::get('/ratings/{rating}/delete', [RatingController::class, 'delete'])
+        ->name('ratings.delete');
+    Route::get('/wordTypes/{wordType}/delete', [WordTypeController::class, 'delete'])
+        ->name('wordTypes.delete');
+    Route::get('/definitions/{definition}/delete', [DefinitionController::class, 'delete'])
+        ->name('definitions.delete');
+    Route::get('/words/{word}/delete', [WordController::class, 'delete'])
+        ->name('words.delete');
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::get('/definitions/{definition}/rate', [DefinitionController::class, 'rate'])
+        ->name('definitions.rate');
+    Route::post('/definitions/{definition}/rate/{rating}', [DefinitionController::class, 'storeDefinitionRating'])
+        ->name('definitionRating.store');
+    Route::get('/definitions/create/{word}', [DefinitionController::class, 'create'])
+        ->name('definitionsWord.create');
+    Route::post('/definitions/rate/{definition}', [DefinitionController::class, 'storeNewDefinitionRating'])
+        ->name('newDefinitionRating.store');
 });
+
+Route::resource('ratings', RatingController::class)
+    ->except(['destroy', 'edit', 'create']);
+Route::resource('words', WordController::class)
+    ->except(['destroy', 'edit', 'create']);
+Route::resource('wordTypes', WordTypeController::class)
+    ->except(['destroy', 'edit', 'create']);
+Route::resource('definitions', DefinitionController::class)
+    ->except(['destroy', 'edit', 'create']);
+
+Route::get('/', [StaticPageController::class, 'home'])
+    ->name('static.home');
+Route::get('/privacy', [StaticPageController::class, 'privacy'])
+    ->name('static.privacy');
+Route::get('/contact', [StaticPageController::class, 'contact'])
+    ->name('static.contact');
+Route::get('/termsAndConditions', [StaticPageController::class, 'terms'])
+    ->name('static.terms');
+Route::get('/colours', [StaticPageController::class, 'colours'])
+    ->name('static.colours');
+Route::get('/icons', [StaticPageController::class, 'icons'])
+    ->name('static.icons');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])
+        ->name('profile.destroy');
 });
 
-Route::get('/', [StaticPageController::class, 'home'])->name('static.home');
-Route::get('/privacy', [StaticPageController::class, 'privacy'])->name('static.privacy');
-Route::get('/contact', [StaticPageController::class, 'contact'])->name('static.contact');
-Route::get('/termsAndConditions', [StaticPageController::class, 'terms'])->name('static.terms');
-Route::get('/colours', [StaticPageController::class, 'colours'])->name('static.colours');
-Route::get('/icons', [StaticPageController::class, 'icons'])->name('static.icons');
 
 require __DIR__.'/auth.php';
+
