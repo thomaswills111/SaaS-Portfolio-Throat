@@ -15,19 +15,41 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
-            'create words',
+            'add words',
             'edit words',
+            'search words',
+            'browse words',
             'delete words',
-            'create definitions',
-            'edit definitions',
-            'delete definitions',
-            'create wordTypes',
-            'edit wordTypes',
-            'delete wordTypes',
-            'create ratings',
 
+            'add users',
             'edit users',
-            'ban users',
+            'search users',
+            'browse users',
+            'delete users',
+
+            'add word types',
+            'edit word types',
+            'search word types',
+            'browse word types',
+            'delete word types',
+
+            'add definitions',
+            'edit definitions',
+            'search definitions',
+            'browse definitions',
+            'delete definitions',
+
+            'add ratings',
+            'edit ratings',
+            'search ratings',
+            'browse ratings',
+            'delete ratings',
+
+            'add definition ratings',
+            'edit definition ratings',
+            'search definition ratings',
+            'browse definition ratings',
+            'delete definition ratings',
         ];
 
         foreach ($permissions as $permission) {

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('word_id')->default(0)->constrained()->onDelete('cascade');
             $table->text('definition');
-            $table->foreignId('user_id')->default(0);
+            $table->foreignId('user_id')->default(1);
             $table->foreignId('word_type_id')->default(1);
             $table->boolean('appropriate')->default(false);
             $table->timestamps();

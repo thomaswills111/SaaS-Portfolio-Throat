@@ -22,6 +22,7 @@ class Word extends Model
     protected $fillable = [
         'word',
         'appropriate',
+        'user_id'
     ];
 
     /**
@@ -42,5 +43,9 @@ class Word extends Model
 
     public function definitions() {
         return $this->hasMany(Definition::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }

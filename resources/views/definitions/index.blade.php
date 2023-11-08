@@ -34,6 +34,22 @@
             </p>
         </div>
         @endif
+    @if(session()->has('unrated'))
+        <div class="w-full p-2 m-0 mb-6">
+            <p class="w-full p-4 bg-orange-500 text-white rounded">
+                <i class="text-xl fa fa-check-circle text-green-200 bg-orange-800 rounded-full mr-4 p-2"></i>
+                The definition {{ session()->get('rated') }} was unrated successfully.
+            </p>
+        </div>
+        @endif
+    @if(session()->has('noRating'))
+        <div class="w-full p-2 m-0 mb-6">
+            <p class="w-full p-4 bg-green-500 text-white rounded">
+                <i class="text-xl fa fa-check-circle text-green-200 bg-green-800 rounded-full mr-4 p-2"></i>
+                The definition {{ session()->get('rated') }} was unrated successfully.
+            </p>
+        </div>
+        @endif
     @if(session()->has('ratingCreated'))
         <div class="w-full p-2 m-0 mb-6">
             <p class="w-full p-4 bg-green-500 text-white rounded">

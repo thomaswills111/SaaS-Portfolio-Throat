@@ -47,4 +47,5 @@ class Rating extends Model
     }
 
 
+
 }

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('words', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->default(1);
             $table->string('word', 255);
             $table->boolean('appropriate')->default(true);
             $table->timestamps();

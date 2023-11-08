@@ -88,7 +88,7 @@
 
             <div class="flex flex-row rounded-md">
 
-                <a href="{{ route('wordTypes.index') }}"
+                <a href="{{ route('definitions.index') }}"
                    class="text-center p-2 grow rounded-l-md
                           text-white
                           bg-sky-500 hover:bg-sky-900

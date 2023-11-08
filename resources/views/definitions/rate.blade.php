@@ -36,9 +36,9 @@
                     <td class="p-2">Unrate</td>
                     <td class="p-2"></td>
                     <td class="p-2 flex flex-row">
-                        <form class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md" method="POST" action="#";">
+                        <form class="px-4 py-2 bg-red-500 hover:bg-red-700 text-white rounded-md" method="POST" action="{{route('definitionRating.remove', ['definition'=>$definition])}}">
                             @csrf
-                            @method('POST')
+                            @method('DELETE')
                             <button type="submit">Unrate</button>
                         </form>
                     </td>

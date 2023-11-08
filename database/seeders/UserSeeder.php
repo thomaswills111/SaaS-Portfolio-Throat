@@ -37,6 +37,11 @@ class UserSeeder extends Seeder
                 'password' => 'Password1',
             ],
         ];
+        User::create([
+            'name' => 'staff',
+            'email' => 'staff@staff.com',
+            'password' => 'password',
+        ])->assignRole('staff');
 
         foreach ($seedUsers as $newUser) {
             $newUser['password'] = Hash::make($newUser['password']);

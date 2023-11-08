@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Word;
 use App\Http\Requests\StoreWordRequest;
 use App\Http\Requests\UpdateWordRequest;
+use Illuminate\Support\Facades\Auth;
 
 class WordController extends Controller
 {
@@ -30,7 +31,9 @@ class WordController extends Controller
      */
     public function store(StoreWordRequest $request)
     {
-        $details = $request->validated(); // Goes to error page if not validated
+        $id = Auth::id();
+        $details = $request->validated();// Goes to error page if not validated
+        $details['user_id'] = $id;
         $word = Word::create($details);
         return redirect(route('words.index'))
             ->with('created', $word->word)
@@ -53,8 +56,14 @@ class WordController extends Controller
      */
     public function edit(Word $word)
     {
-        return view('words.edit', compact(['word']));
-
+        $user = Auth::user();
+        if ($word->user_id == $user->id || $user->hasAnyRole('admin', 'staff')) {
+            if ($word->user->hasRole('admin')) {
+                abort(403, 'This belongs to an admin');
+            }
+            return view('words.edit', compact(['word']));
+        }
+        abort(403, 'This is not your word');
     }
 
     /**
@@ -72,8 +81,14 @@ class WordController extends Controller
     }
 
     public function delete(Word $word) {
-
-        return view('words.delete', compact(['word']));
+        $user = Auth::user();
+        if ($word->user_id == $user->id || $user->hasAnyRole('admin', 'staff')) {
+            if ($word->user->hasRole('admin')) {
+                abort(403, 'This belongs to an admin');
+            }
+            return view('words.delete', compact(['word']));
+        }
+        abort(403, 'This is not your word');
     }
 
     /**

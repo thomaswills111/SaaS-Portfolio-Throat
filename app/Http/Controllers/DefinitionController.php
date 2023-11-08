@@ -6,12 +6,16 @@ use App\Http\Requests\StoreRatingRequest;
 use App\Models\Definition;
 use App\Http\Requests\StoreDefinitionRequest;
 use App\Http\Requests\UpdateDefinitionRequest;
+use App\Models\DefinitionRating;
 use App\Models\Rating;
+use App\Models\User;
 use App\Models\Word;
 use App\Models\WordType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Types\Null_;
+use function Laravel\Prompts\error;
 
 class DefinitionController extends Controller
 {
@@ -35,30 +39,57 @@ class DefinitionController extends Controller
 
     public function rate(Definition $definition)
     {
+
         $ratings = Rating::all();
-        return view('definitions.rate', (['definition'=>$definition, 'ratings'=>$ratings]));
+        return view('definitions.rate', (['definition' => $definition, 'ratings' => $ratings]));
     }
 
     public function storeDefinitionRating(Definition $definition, Rating $rating)
     {
-        $definition->ratings()->attach([$rating['id'] => ['value' => $rating['stars']]]);
+        $id = Auth::id();
+
+        $definitionRatings = DefinitionRating::all();
+
+
+        $userDefinitionRating = $definitionRatings
+            ->where('definition_id', $definition['id'])
+            ->where('user_id', $id)
+            ->first();
+
+        if ($userDefinitionRating) {
+            $definition->ratings()->detach($userDefinitionRating['rating_id']);
+        }
+
+        $definition->ratings()->attach([$rating['id'] => ['value' => $rating['stars'], 'user_id' => $id]]);
 
         return redirect(route('definitions.index'))
             ->with('rated', $definition->word->word)
             ->with('messages', ['created', true]);
     }
 
-    public function storeNewDefinitionRating(StoreRatingRequest $request, Definition $definition)
+    public function removeDefinitionRating(Definition $definition)
     {
-        $details = $request->validated(); // Goes to error page if not validated
-        $rating = Rating::create($details);
+        $id = Auth::id();
 
-        $definition->ratings()->attach([$rating['id'] => ['value' => $rating['stars']]]);
+        $definitionRatings = DefinitionRating::all();
+
+        $userDefinitionRating = $definitionRatings
+            ->where('definition_id', $definition['id'])
+            ->where('user_id', $id)
+            ->first();
+
+        if ($userDefinitionRating) {
+            $definition->ratings()->detach($userDefinitionRating['rating_id']);
+        }
+        else {
+            return redirect(route('definitions.index'))
+                ->with('noRating', $definition)
+                ->with('messages', ['noRating', true]);
+        }
 
         return redirect(route('definitions.index'))
-            ->with('rated', $definition->word->word)
-            ->with('ratingCreated', $rating->name)
-            ->with('messages', ['created', true]); // inserting the rating's name into a new variable named 'created'
+            ->with('unrated', $definition)
+            ->with('messages', ['unrated', true]);
     }
 
 
@@ -67,6 +98,8 @@ class DefinitionController extends Controller
      */
     public function store(StoreDefinitionRequest $request)
     {
+        $id = Auth::id();
+
         $data = $request->validated();
 
         $wordTypes = WordType::all();
@@ -84,7 +117,7 @@ class DefinitionController extends Controller
             while ($codeExists && $firstLetter < ($swLength - 1)) {
                 $secondLetter = 1;
                 while ($codeExists && $secondLetter < $swLength) {
-                    $codeLetters = Str::substr($detailsWordType, $firstLetter, 1).Str::substr($detailsWordType, $secondLetter, 1);
+                    $codeLetters = Str::substr($detailsWordType, $firstLetter, 1) . Str::substr($detailsWordType, $secondLetter, 1);
                     $codeExists = WordType::where('code', '=', $codeLetters)->get()->count() ?? false;
                     $secondLetter++;
                 }
@@ -111,7 +144,7 @@ class DefinitionController extends Controller
         }
 
         $words = Word::all();
-        $word =$words->firstWhere('word', $data['word']);
+        $word = $words->firstWhere('word', $data['word']);
         $details['word_id'] = $word['id'];
 
         $details['definition'] = $data['definition'];
@@ -122,6 +155,7 @@ class DefinitionController extends Controller
         $details['word_type_id'] = $wordType['id'];
 
         $details['appropriate'] = true;
+        $details['user_id'] = $id;
 
         $definition = Definition::create($details);
         return redirect(route('definitions.index'))
@@ -142,7 +176,14 @@ class DefinitionController extends Controller
      */
     public function edit(Definition $definition)
     {
-        return view('definitions.edit', compact(['definition']));
+        $user = Auth::user();
+        if ($definition->user_id == $user->id || $user->hasAnyRole('staff', 'admin')) {
+            if ($definition->user->hasRole('admin')) {
+                abort(403, 'This belongs to an admin');
+            }
+            return view('definitions.edit', compact(['definition']));
+        }
+        abort(403, 'This is not your definition');
     }
 
     /**
@@ -150,6 +191,8 @@ class DefinitionController extends Controller
      */
     public function update(UpdateDefinitionRequest $request, Definition $definition)
     {
+        $user = Auth::user();
+
         $data = $request->validated();
 
         $wordTypes = WordType::all();
@@ -167,7 +210,7 @@ class DefinitionController extends Controller
             while ($codeExists && $firstLetter < ($swLength - 1)) {
                 $secondLetter = 1;
                 while ($codeExists && $secondLetter < $swLength) {
-                    $codeLetters = Str::substr($detailsWordType, $firstLetter, 1).Str::substr($detailsWordType, $secondLetter, 1);
+                    $codeLetters = Str::substr($detailsWordType, $firstLetter, 1) . Str::substr($detailsWordType, $secondLetter, 1);
                     $codeExists = WordType::where('code', '=', $codeLetters)->get()->count() ?? false;
                     $secondLetter++;
                 }
@@ -183,7 +226,7 @@ class DefinitionController extends Controller
         }
 
         $words = Word::all();
-        $word =$words->firstWhere('word', $data['word']);
+        $word = $words->firstWhere('word', $data['word']);
         $details['word_id'] = $word['id'];
 
         $details['definition'] = $data['definition'];
@@ -194,6 +237,7 @@ class DefinitionController extends Controller
         $details['word_type_id'] = $wordType['id'];
 
         $details['appropriate'] = true;
+        $details['user_id'] = $user->id;
 
         $definition->update($details);
 
@@ -205,9 +249,17 @@ class DefinitionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function delete(Definition $definition) {
+    public function delete(Definition $definition)
+    {
 
-        return view('definitions.delete', compact(['definition']));
+        $user = Auth::user();
+        if ($definition->user_id == $user->id || $user->hasAnyRole('admin', 'staff')) {
+            if ($definition->user->hasRole('admin')) {
+                abort(403, 'This belongs to an admin');
+            }
+            return view('definitions.delete', compact(['definition']));
+        }
+        abort(403, 'This is not your definition');
     }
 
     /**

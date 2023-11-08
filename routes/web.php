@@ -25,20 +25,15 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('/ratings', [RatingController::class, 'index'])->middleware('auth')->name('ratings.index');
 
-Route::middleware('auth')->group(function () {
-    Route::resource('ratings', RatingController::class)
-        ->except(['index', 'show']);
+
+Route::group(['middleware' => ['role:admin|staff|user']], function () {
     Route::resource('words', WordController::class)
         ->except(['index', 'show']);
-    Route::resource('wordTypes', WordTypeController::class)
-        ->except(['index', 'show']);
+
     Route::resource('definitions', DefinitionController::class)
         ->except(['index', 'show']);
 
-    Route::get('/ratings/{rating}/delete', [RatingController::class, 'delete'])
-        ->name('ratings.delete');
-    Route::get('/wordTypes/{wordType}/delete', [WordTypeController::class, 'delete'])
-        ->name('wordTypes.delete');
+
     Route::get('/definitions/{definition}/delete', [DefinitionController::class, 'delete'])
         ->name('definitions.delete');
     Route::get('/words/{word}/delete', [WordController::class, 'delete'])
@@ -52,13 +47,23 @@ Route::middleware('auth')->group(function () {
         ->name('definitionsWord.create');
     Route::post('/definitions/rate/{definition}', [DefinitionController::class, 'storeNewDefinitionRating'])
         ->name('newDefinitionRating.store');
+
+    Route::delete('/definitions/{definition}/rate', [DefinitionController::class, 'removeDefinitionRating'])
+        ->name('definitionRating.remove');
 });
 
-Route::resource('ratings', RatingController::class)
-    ->except(['destroy', 'edit', 'create']);
+
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::resource('ratings', RatingController::class);
+    Route::resource('wordTypes', WordTypeController::class);
+    Route::get('/ratings/{rating}/delete', [RatingController::class, 'delete'])
+        ->name('ratings.delete');
+    Route::get('/wordTypes/{wordType}/delete', [WordTypeController::class, 'delete'])
+        ->name('wordTypes.delete');
+});
+
+
 Route::resource('words', WordController::class)
-    ->except(['destroy', 'edit', 'create']);
-Route::resource('wordTypes', WordTypeController::class)
     ->except(['destroy', 'edit', 'create']);
 Route::resource('definitions', DefinitionController::class)
     ->except(['destroy', 'edit', 'create']);

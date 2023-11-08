@@ -19,15 +19,47 @@ class RoleSeeder extends Seeder
         $allPermissions = Permission::all();
 
         $userPermissionsList = [
-            'create words',
             'edit words',
+            'search words',
+            'browse words',
             'delete words',
-            'create definitions',
+
             'edit definitions',
+            'search definitions',
+            'browse definitions',
             'delete definitions',
-            'create wordTypes',
-            'edit wordTypes',
-            'delete wordTypes',
+            'add definitions',
+
+            'add definition ratings',
+            'edit definition ratings',
+            'search definition ratings',
+            'browse definition ratings',
+            'delete definition ratings',
+        ];
+
+        $staffPermissionList = [
+            'add words',
+            'edit words',
+            'search words',
+            'browse words',
+            'delete words',
+
+            'add users',
+            'edit users',
+            'search users',
+            'browse users',
+
+            'add definitions',
+            'edit definitions',
+            'search definitions',
+            'browse definitions',
+            'delete definitions',
+
+            'add definition ratings',
+            'edit definition ratings',
+            'search definition ratings',
+            'browse definition ratings',
+            'delete definition ratings',
         ];
 
         $userPermissions = Array();
@@ -35,10 +67,18 @@ class RoleSeeder extends Seeder
             $userPermissions[] = Permission::query()->where('name', $permission)->first()->id;
         }
 
+        $staffPermissions = Array();
+        foreach ($staffPermissionList as $permission) {
+            $staffPermissions[] = Permission::query()->where('name', $permission)->first()->id;
+        }
+
         $adminRole = Role::create(['name'=>'admin']);
+        $staffRole = Role::create(['name'=>'staff']);
         $userRole = Role::create(['name'=>'user']);
 
         $adminRole->syncPermissions($allPermissions);
+
+        $staffRole->syncPermissions($staffPermissions);
 
         $userRole->syncPermissions($userPermissions);
 
