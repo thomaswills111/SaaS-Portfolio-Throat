@@ -74,7 +74,7 @@ class UserController extends Controller
             ])
                 ->plainTextToken;
         }
-        if ($user->hasRole('staff')) {
+        elseif ($user->hasRole('staff')) {
             $token = $user->createToken('staff-token', [
                 'add words',
                 'edit words',
@@ -101,7 +101,7 @@ class UserController extends Controller
             ])
                 ->plainTextToken;
         }
-        if ($user->hasRole('user')) {
+        else {
             $token = $user->createToken('user-token', [
                 'edit words',
                 'search words',

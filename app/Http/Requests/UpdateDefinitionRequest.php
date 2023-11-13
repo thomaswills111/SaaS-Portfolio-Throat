@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateDefinitionRequest extends FormRequest
 {
@@ -11,7 +12,14 @@ class UpdateDefinitionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $user = auth('sanctum')->user();
+
+        if ($user) {
+            if ($user->hasRole('admin|staff|user') || $user->tokenCan('edit definitions')) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -21,18 +29,37 @@ class UpdateDefinitionRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'word' => [
-                'required',
-                'min:2',
-                'max:32',
-            ],
-            'definition' => 'required',
-            'word_type' => [
-                'required',
-                'min:2',
-                'max:32',
-            ],
-        ];
+        $method = $this->method();
+
+        if ($method == 'PUT') {
+            return [
+                'word' => [
+                    'required',
+                    'min:2',
+                    'max:32',
+                ],
+                'definition' => 'required',
+                'word_type' => [
+                    'required',
+                    'min:2',
+                    'max:32',
+                ],
+            ];
+        } else {
+            return [
+                'word' => [
+                    'min:2',
+                    'max:32',
+                    'sometimes'
+                ],
+                'definition' => 'sometimes',
+                'word_type' => [
+                    'sometimes',
+                    'min:2',
+                    'max:32',
+                ],
+            ];
+        }
+
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatedefinitionRequest;
 use App\Http\Resources\definitionCollection;
 use App\Http\Resources\definitionResource;
 use App\Models\definition;
+use App\Models\DefinitionRating;
 use App\Models\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -74,7 +75,26 @@ class DefinitionController extends Controller
      */
     public function update(UpdatedefinitionRequest $request, definition $definition)
     {
+        $user = auth('sanctum')->user();
+
+        if ($user->hasRole('admin|staff')) {
+            $definition->update($request->all());
+
+            return response()->json([
+                'message' => 'Updated definition successfully'
+            ], 200);
+        }
+        if ($definition->user_id != $user->id) {
+            return response()->json([
+                'message' => 'Unauthorised'
+            ], 403);
+        }
+
         $definition->update($request->all());
+
+        return response()->json([
+            'message' => 'Updated definition successfully'
+        ], 200);
     }
 
     /**
@@ -108,6 +128,24 @@ class DefinitionController extends Controller
 
     public function removeRating(Definition $definition, Rating $rating)
     {
-        $definition->ratings()->detach([$rating['id']]);
+        $user = auth('sanctum')->user();
+
+        $definitionRatings = DefinitionRating::all();
+        $userDefinitionRating = $definitionRatings
+            ->where('definition_id', $definition['id'])
+            ->where('user_id', $user->id)
+            ->first();
+
+        if ($user->hasRole('admin') || $user->id == $userDefinitionRating->id) {
+            $definition->ratings()->detach([$rating['id']]);
+
+            return response()->json([
+                'message' => 'Deleted the rating of the definition successfully'
+            ], 200);
+        }
+
+        return response()->json([
+            'message' => 'Unauthorised'
+        ], 403);
     }
 }

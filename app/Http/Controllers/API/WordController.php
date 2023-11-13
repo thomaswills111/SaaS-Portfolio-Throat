@@ -59,8 +59,20 @@ class WordController extends Controller
      */
     public function update(UpdateWordRequest $request, Word $word)
     {
-        $word->update($request->all());
-    }
+        $user = auth('sanctum')->user();
+
+        if ($user->hasRole('admin|staff')) {
+            $word->update($request->all());
+
+            return response()->json([
+                'message' => 'Updated word successfully'
+            ], 200);
+        }
+        if ($word->user_id != $user->id) {
+            return response()->json([
+                'message' => 'Unauthorised'
+            ], 403);
+        }    }
 
     /**
      * Remove the specified resource from storage.

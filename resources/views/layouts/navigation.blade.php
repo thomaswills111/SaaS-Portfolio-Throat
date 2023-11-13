@@ -13,29 +13,39 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @auth()
-                    <x-nav-link class="dark:text-gray-300" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                    {{ __('Dashboard') }}
-                    </x-nav-link>
+                        <x-nav-link class="dark:text-gray-300" :href="route('dashboard')"
+                                    :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
                     @endauth
-                    <x-nav-link class="dark:text-gray-300" :href="route('words.index')" :active="request()->routeIs('words.index')">
+                    <x-nav-link class="dark:text-gray-300" :href="route('words.index')"
+                                :active="request()->routeIs('words.index')">
                         {{ __('Words') }}
                     </x-nav-link>
-                    <x-nav-link class="dark:text-gray-300" :href="route('definitions.index')" :active="request()->routeIs('definitions.index')">
+                    <x-nav-link class="dark:text-gray-300" :href="route('definitions.index')"
+                                :active="request()->routeIs('definitions.index')">
                         {{ __('Definitions') }}
                     </x-nav-link>
-                    <x-nav-link class="dark:text-gray-300" :href="route('wordTypes.index')" :active="request()->routeIs('wordTypes.index')">
+                    @role('admin')
+                    <x-nav-link class="dark:text-gray-300" :href="route('wordTypes.index')"
+                                :active="request()->routeIs('wordTypes.index')">
                         {{ __('Word Types') }}
                     </x-nav-link>
-                    <x-nav-link class="dark:text-gray-300" :href="route('ratings.index')" :active="request()->routeIs('ratings.index')">
+                    <x-nav-link class="dark:text-gray-300" :href="route('ratings.index')"
+                                :active="request()->routeIs('ratings.index')">
                         {{ __('Ratings') }}
                     </x-nav-link>
+                    @endrole()
                 </div>
             </div>
 
             @guest()
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
-                    <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
-                    <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                    <a href="{{ route('login') }}"
+                       class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
+                        in</a>
+                    <a href="{{ route('register') }}"
+                       class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
                 </div>
             @endguest
 
