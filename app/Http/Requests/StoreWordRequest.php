@@ -12,7 +12,15 @@ class StoreWordRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $user = $this->user();
+
+        if ($user) {
+            if ($user->hasRole('admin|staff|user') || $user->tokenCan('add words'))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

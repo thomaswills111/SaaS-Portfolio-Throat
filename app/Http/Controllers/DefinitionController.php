@@ -254,6 +254,10 @@ class DefinitionController extends Controller
 
         $user = Auth::user();
         if ($definition->user_id == $user->id || $user->hasAnyRole('admin', 'staff')) {
+            if($user->hasRole('admin')) {
+                return view('definitions.delete', compact(['definition']));
+            }
+
             if ($definition->user->hasRole('admin')) {
                 abort(403, 'This belongs to an admin');
             }

@@ -10,6 +10,7 @@ use App\Http\Resources\definitionResource;
 use App\Models\definition;
 use App\Models\Rating;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DefinitionController extends Controller
 {
@@ -20,10 +21,29 @@ class DefinitionController extends Controller
     {
         $itemNum = $request->perPage;
         $search = $request->search;
+        $userId = $request->userId;
+        $myDefinitions = $request->myDefinitions;
 
         if ($search) {
             $definitions = definition::query()
                 ->where('definition', 'LIKE', "%{$search}%")
+                ->paginate($itemNum ?? 10);
+
+            return new definitionCollection($definitions->appends($request->query()));
+        }
+
+        if ($userId) {
+            $definitions = definition::query()
+                ->where('user_id', 'LIKE', $userId)
+                ->paginate($itemNum ?? 10);
+
+            return new definitionCollection($definitions->appends($request->query()));
+        }
+
+        if ($myDefinitions) {
+            $user = auth('sanctum')->user();
+            $definitions = definition::query()
+                ->where('user_id', 'LIKE', $user->id)
                 ->paginate($itemNum ?? 10);
 
             return new definitionCollection($definitions->appends($request->query()));
@@ -71,6 +91,10 @@ class DefinitionController extends Controller
         $rating = $ratings->firstWhere('id', $request['rating_id']);
 
         $definition->ratings()->attach([$rating['id'] => ['value' => $rating['stars']]]);
+
+        return response()->json([
+            'message' => 'Updated rating'
+        ], 200);
 
     }
 
