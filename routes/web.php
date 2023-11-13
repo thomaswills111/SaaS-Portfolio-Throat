@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DefinitionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RatingController;
@@ -60,6 +61,10 @@ Route::group(['middleware' => ['role:admin']], function () {
         ->name('ratings.delete');
     Route::get('/wordTypes/{wordType}/delete', [WordTypeController::class, 'delete'])
         ->name('wordTypes.delete');
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
+        ->name('admin.dashboard');
+    Route::patch('/admin/dashboard/{user}', [AdminController::class, 'updateRole'])
+        ->name('admin.updateRole');
 });
 
 

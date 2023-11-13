@@ -13,10 +13,17 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @auth()
+                        @role('admin')
+                        <x-nav-link class="dark:text-gray-300" :href="route('admin.dashboard')"
+                                    :active="request()->routeIs('admin.dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                        @else
                         <x-nav-link class="dark:text-gray-300" :href="route('dashboard')"
                                     :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
+                        @endrole
                     @endauth
                     <x-nav-link class="dark:text-gray-300" :href="route('words.index')"
                                 :active="request()->routeIs('words.index')">

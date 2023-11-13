@@ -8,7 +8,6 @@
                     {{ __('RATINGS') }}
                 </h2>
 
-{{--                 @can('create ratings')--}}
             </div>
             <p class="text-gray-100">
                 <a href="{{ route('ratings.create') }}"
@@ -18,7 +17,6 @@
                 >Add New Rating</a>
             </p>
         </div>
-{{--        @endcan--}}
     </x-slot>
 
     @if(session()->has('created'))

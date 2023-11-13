@@ -8,13 +8,7 @@
                     {{ __('DEFINITIONS') }}
                 </h2>
             </div>
-            <p class="text-gray-100">
-                <a href="{{ route('definitions.create') }}"
-                   class="rounded-lg p-2 bg-blue-900
-                transition ease-in-out duration-500
-                hover:bg-blue-100 hover:text-blue-900"
-                >Add New Definition</a>
-            </p>
+
         </div>
     </x-slot>
 

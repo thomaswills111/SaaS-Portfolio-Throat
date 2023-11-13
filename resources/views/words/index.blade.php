@@ -43,7 +43,6 @@
         </div>
     @endif
 
-    {{--        table.table.w-full.text-gray-900.dark:text-gray-200--}}
     <table class="table w-full text-gray-900 dark:text-gray-200 text-left">
         <thread>
             <tr>
