@@ -58,7 +58,7 @@ class WordController extends Controller
     {
         $user = Auth::user();
         if ($word->user_id == $user->id || $user->hasAnyRole('admin', 'staff')) {
-            if ($word->user->hasRole('admin')) {
+            if ($word->user->hasRole('admin') && $user->hasRole('staff')) {
                 abort(403, 'This belongs to an admin');
             }
             return view('words.edit', compact(['word']));
@@ -83,7 +83,7 @@ class WordController extends Controller
     public function delete(Word $word) {
         $user = Auth::user();
         if ($word->user_id == $user->id || $user->hasAnyRole('admin', 'staff')) {
-            if ($word->user->hasRole('admin')) {
+            if ($word->user->hasRole('admin') && $user->hasRole('staff')) {
                 abort(403, 'This belongs to an admin');
             }
             return view('words.delete', compact(['word']));

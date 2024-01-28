@@ -16,19 +16,18 @@ class DefinitionSeeder extends Seeder
        $seedDefinitions = [
            [
                'word_id' => 1,
-               'definition' => 'A protocol for transferring files',
+               'definition' => 'File Transfer Protocol',
                'user_id' => 1,
                'word_type_id' => 15,
                'appropriate' => true,
            ],
            [
-               'word_id' => 1,
-               'definition' => 'A protocol for transferring files',
-               'user_id' => 0,
+               'word_id' => 2,
+               'definition' => 'International Business Machines',
+               'user_id' => 1,
                'word_type_id' => 15,
                'appropriate' => true,
            ],
-
         ];
 
         foreach ($seedDefinitions as $seedDefinition) {

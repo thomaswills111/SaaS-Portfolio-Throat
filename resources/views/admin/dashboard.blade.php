@@ -16,8 +16,14 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="overflow-hidden shadow-sm sm:rounded-lg">
                     @role('admin')
+
+                <h3 class="text-lg text-gray-800 dark:text-gray-200
+                   font-bold">
+                    {{ __('Update User Roles') }}
+                </h3>
+
                     <table class="table w-full text-gray-900 dark:text-gray-200 text-left">
                         <thread>
                             <tr>

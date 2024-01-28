@@ -178,7 +178,7 @@ class DefinitionController extends Controller
     {
         $user = Auth::user();
         if ($definition->user_id == $user->id || $user->hasAnyRole('staff', 'admin')) {
-            if ($definition->user->hasRole('admin')) {
+            if ($definition->user->hasRole('admin') && $user->hasRole('staff')) {
                 abort(403, 'This belongs to an admin');
             }
             return view('definitions.edit', compact(['definition']));

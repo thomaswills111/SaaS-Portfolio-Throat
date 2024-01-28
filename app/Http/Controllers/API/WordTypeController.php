@@ -54,6 +54,10 @@ class WordTypeController extends Controller
     public function update(UpdateWordTypeRequest $request, WordType $wordType)
     {
         $wordType->update($request->all());
+
+        return response()->json([
+            'message' => 'Updated the word type successfully'
+        ], 200);
     }
 
     /**
@@ -62,5 +66,9 @@ class WordTypeController extends Controller
     public function destroy(WordType $wordType)
     {
         $wordType->delete();
+
+        return response()->json([
+            'message' => 'Deleted the word type successfully'
+        ], 200);
     }
 }

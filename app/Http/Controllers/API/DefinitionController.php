@@ -103,6 +103,10 @@ class DefinitionController extends Controller
     public function destroy(definition $definition)
     {
         $definition->delete();
+
+        return response()->json([
+            'message' => 'Deleted successfully'
+        ], 200);
     }
 
     public function addRating(Definition $definition, Request $request)
@@ -124,6 +128,10 @@ class DefinitionController extends Controller
         $ratings = Rating::all();
         $rating = $ratings->firstWhere('id', $request['rating_id']);
         $definition->ratings()->attach([$rating['id'] => ['value' => $rating['stars']]]);
+
+        return response()->json([
+            'message' => 'Updated the rating of the definition successfully'
+        ], 200);
     }
 
     public function removeRating(Definition $definition, Rating $rating)
