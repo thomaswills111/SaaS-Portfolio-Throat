@@ -1,0 +1,879 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/127.0.0.1:8000"
+        }
+    ],
+    "info": {
+        "name": "Laravel",
+        "_postman_id": "e51cb6eb-46dd-4d15-b6a1-0d213854a337",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "GET api\/user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/login",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"password\":\"ipsum\",\"email\":\"hope70@example.net\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/logout",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/words",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/words"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"word\":\"megjfmhtwfic\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/words\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/words\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the word."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"word\":\"q\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/words\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/words\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the word."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/definitions",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/definitions"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"word\":\"japahxa\",\"definition\":\"magnam\",\"word_type\":\"dmsryh\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/definitions\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/definitions\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the definition."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"word\":\"uqgxvvhcp\",\"definition\":\"ea\",\"word_type\":\"yozsgcxjehphdatetctocl\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/definitions\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/definitions\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the definition."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/definitions\/{definition_id}\/rate",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/definitions\/:definition_id\/rate",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/definitions\/:definition_id\/rate",
+                            "variable": [
+                                {
+                                    "id": "definition_id",
+                                    "key": "definition_id",
+                                    "value": "1",
+                                    "description": "The ID of the definition."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PUT api\/definitions\/{definition_id}\/rate\/{rating_id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/definitions\/:definition_id\/rate\/:rating_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/definitions\/:definition_id\/rate\/:rating_id",
+                            "variable": [
+                                {
+                                    "id": "definition_id",
+                                    "key": "definition_id",
+                                    "value": "1",
+                                    "description": "The ID of the definition."
+                                },
+                                {
+                                    "id": "rating_id",
+                                    "key": "rating_id",
+                                    "value": "1",
+                                    "description": "The ID of the rating."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/definitions\/{definition_id}\/rate\/{rating_id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/definitions\/:definition_id\/rate\/:rating_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/definitions\/:definition_id\/rate\/:rating_id",
+                            "variable": [
+                                {
+                                    "id": "definition_id",
+                                    "key": "definition_id",
+                                    "value": "1",
+                                    "description": "The ID of the definition."
+                                },
+                                {
+                                    "id": "rating_id",
+                                    "key": "rating_id",
+                                    "value": "1",
+                                    "description": "The ID of the rating."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/words",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/words"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"user_id\":1,\"word\":\"FTP\",\"appropriate\":1,\"created_at\":\"2024-02-02T07:01:19.000000Z\",\"updated_at\":\"2024-02-02T07:01:19.000000Z\",\"definitions\":[{\"id\":1,\"word_id\":1,\"definition\":\"File Transfer Protocol\",\"user_id\":1,\"word_type_id\":15,\"appropriate\":1,\"created_at\":\"2024-02-02T07:01:19.000000Z\",\"updated_at\":\"2024-02-02T07:01:19.000000Z\"}]},{\"id\":2,\"user_id\":1,\"word\":\"IBM\",\"appropriate\":1,\"created_at\":\"2024-02-02T07:01:19.000000Z\",\"updated_at\":\"2024-02-02T07:01:19.000000Z\",\"definitions\":[{\"id\":2,\"word_id\":2,\"definition\":\"International Business Machines\",\"user_id\":1,\"word_type_id\":15,\"appropriate\":1,\"created_at\":\"2024-02-02T07:01:19.000000Z\",\"updated_at\":\"2024-02-02T07:01:19.000000Z\"}]},{\"id\":3,\"user_id\":1,\"word\":\"laser\",\"appropriate\":1,\"created_at\":\"2024-02-02T07:01:19.000000Z\",\"updated_at\":\"2024-02-02T07:01:19.000000Z\",\"definitions\":[]},{\"id\":4,\"user_id\":1,\"word\":\"MoSCoW\",\"appropriate\":1,\"created_at\":\"2024-02-02T07:01:19.000000Z\",\"updated_at\":\"2024-02-02T07:01:19.000000Z\",\"definitions\":[]},{\"id\":5,\"user_id\":1,\"word\":\"THROAT\",\"appropriate\":1,\"created_at\":\"2024-02-02T07:01:19.000000Z\",\"updated_at\":\"2024-02-02T07:01:19.000000Z\",\"definitions\":[]},{\"id\":6,\"user_id\":1,\"word\":\"CRUD\",\"appropriate\":1,\"created_at\":\"2024-02-02T07:01:19.000000Z\",\"updated_at\":\"2024-02-02T07:01:19.000000Z\",\"definitions\":[]},{\"id\":7,\"user_id\":1,\"word\":\"KISS\",\"appropriate\":1,\"created_at\":\"2024-02-02T07:01:19.000000Z\",\"updated_at\":\"2024-02-02T07:01:19.000000Z\",\"definitions\":[]},{\"id\":8,\"user_id\":1,\"word\":\"PHP\",\"appropriate\":1,\"created_at\":\"2024-02-02T07:01:19.000000Z\",\"updated_at\":\"2024-02-02T07:01:19.000000Z\",\"definitions\":[]},{\"id\":9,\"user_id\":1,\"word\":\"imho\",\"appropriate\":1,\"created_at\":\"2024-02-02T07:01:19.000000Z\",\"updated_at\":\"2024-02-02T07:01:19.000000Z\",\"definitions\":[]},{\"id\":10,\"user_id\":1,\"word\":\"DRY\",\"appropriate\":1,\"created_at\":\"2024-02-02T07:01:19.000000Z\",\"updated_at\":\"2024-02-02T07:01:19.000000Z\",\"definitions\":[]}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/words\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/words\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the word."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "58"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":1,\"word\":\"FTP\",\"appropriate\":1,\"definitions\":[{\"id\":1,\"wordId\":1,\"definition\":\"File Transfer Protocol\",\"userID\":1,\"wordTypeId\":15,\"appropriate\":1}]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display a listing of the resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/definitions",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/definitions"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "57"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"word_id\":1,\"definition\":\"File Transfer Protocol\",\"user_id\":1,\"word_type_id\":15,\"appropriate\":1,\"created_at\":\"2024-02-02T07:01:19.000000Z\",\"updated_at\":\"2024-02-02T07:01:19.000000Z\"},{\"id\":2,\"word_id\":2,\"definition\":\"International Business Machines\",\"user_id\":1,\"word_type_id\":15,\"appropriate\":1,\"created_at\":\"2024-02-02T07:01:19.000000Z\",\"updated_at\":\"2024-02-02T07:01:19.000000Z\"},{\"id\":3,\"word_id\":18,\"definition\":\"test\",\"user_id\":1,\"word_type_id\":19,\"appropriate\":1,\"created_at\":\"2024-02-02T07:07:09.000000Z\",\"updated_at\":\"2024-02-02T07:07:09.000000Z\"},{\"id\":4,\"word_id\":18,\"definition\":\"1\",\"user_id\":3,\"word_type_id\":20,\"appropriate\":1,\"created_at\":\"2024-02-02T07:09:13.000000Z\",\"updated_at\":\"2024-02-02T07:09:13.000000Z\"}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/definitions\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/definitions\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the definition."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "56"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":1,\"wordId\":1,\"definition\":\"File Transfer Protocol\",\"userID\":1,\"wordTypeId\":15,\"appropriate\":1}}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "WordType",
+            "description": "",
+            "item": [
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/wordTypes",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/wordTypes"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"nyn\",\"code\":\"xn\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "index request",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/wordTypes",
+                            "query": [
+                                {
+                                    "key": "perPage",
+                                    "value": "15",
+                                    "description": "Returned number of items per page",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "possimus",
+                                    "description": "Text to filter by",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/wordTypes?perPage=15&search=possimus"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Display a listing of the resource."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/wordTypes\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/wordTypes\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the wordType."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/wordTypes\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/wordTypes\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the wordType."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"oedyxewvswbqkunvoblgk\",\"code\":\"vs\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/wordTypes\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/wordTypes\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the wordType."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "Authorization",
+                "type": "string"
+            }
+        ]
+    }
+}

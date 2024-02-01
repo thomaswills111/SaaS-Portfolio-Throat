@@ -10,10 +10,19 @@ use App\Http\Resources\WordTypeResource;
 use App\Models\WordType;
 use Illuminate\Http\Request;
 
+
+/**
+ * @group WordType
+ */
 class WordTypeController extends Controller
 {
     /**
+     * index request
+     *
      * Display a listing of the resource.
+     *
+     * @queryParam perPage int Returned number of items per page
+     * @queryParam search string Text to filter by
      */
     public function index(Request $request)
     {

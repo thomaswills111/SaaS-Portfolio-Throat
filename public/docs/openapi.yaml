@@ -1,0 +1,917 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://127.0.0.1:8000'
+paths:
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+  /api/login:
+    post:
+      summary: ''
+      operationId: postApiLogin
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  description: ''
+                  example: ipsum
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: hope70@example.net
+              required:
+                - password
+                - email
+  /api/logout:
+    post:
+      summary: ''
+      operationId: postApiLogout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+  /api/words:
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                word:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 32 characters.'
+                  example: megjfmhtwfic
+              required:
+                - word
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      user_id: 1
+                      word: FTP
+                      appropriate: 1
+                      created_at: '2024-02-02T07:01:19.000000Z'
+                      updated_at: '2024-02-02T07:01:19.000000Z'
+                      definitions:
+                        -
+                          id: 1
+                          word_id: 1
+                          definition: 'File Transfer Protocol'
+                          user_id: 1
+                          word_type_id: 15
+                          appropriate: 1
+                          created_at: '2024-02-02T07:01:19.000000Z'
+                          updated_at: '2024-02-02T07:01:19.000000Z'
+                    -
+                      id: 2
+                      user_id: 1
+                      word: IBM
+                      appropriate: 1
+                      created_at: '2024-02-02T07:01:19.000000Z'
+                      updated_at: '2024-02-02T07:01:19.000000Z'
+                      definitions:
+                        -
+                          id: 2
+                          word_id: 2
+                          definition: 'International Business Machines'
+                          user_id: 1
+                          word_type_id: 15
+                          appropriate: 1
+                          created_at: '2024-02-02T07:01:19.000000Z'
+                          updated_at: '2024-02-02T07:01:19.000000Z'
+                    -
+                      id: 3
+                      user_id: 1
+                      word: laser
+                      appropriate: 1
+                      created_at: '2024-02-02T07:01:19.000000Z'
+                      updated_at: '2024-02-02T07:01:19.000000Z'
+                      definitions: []
+                    -
+                      id: 4
+                      user_id: 1
+                      word: MoSCoW
+                      appropriate: 1
+                      created_at: '2024-02-02T07:01:19.000000Z'
+                      updated_at: '2024-02-02T07:01:19.000000Z'
+                      definitions: []
+                    -
+                      id: 5
+                      user_id: 1
+                      word: THROAT
+                      appropriate: 1
+                      created_at: '2024-02-02T07:01:19.000000Z'
+                      updated_at: '2024-02-02T07:01:19.000000Z'
+                      definitions: []
+                    -
+                      id: 6
+                      user_id: 1
+                      word: CRUD
+                      appropriate: 1
+                      created_at: '2024-02-02T07:01:19.000000Z'
+                      updated_at: '2024-02-02T07:01:19.000000Z'
+                      definitions: []
+                    -
+                      id: 7
+                      user_id: 1
+                      word: KISS
+                      appropriate: 1
+                      created_at: '2024-02-02T07:01:19.000000Z'
+                      updated_at: '2024-02-02T07:01:19.000000Z'
+                      definitions: []
+                    -
+                      id: 8
+                      user_id: 1
+                      word: PHP
+                      appropriate: 1
+                      created_at: '2024-02-02T07:01:19.000000Z'
+                      updated_at: '2024-02-02T07:01:19.000000Z'
+                      definitions: []
+                    -
+                      id: 9
+                      user_id: 1
+                      word: imho
+                      appropriate: 1
+                      created_at: '2024-02-02T07:01:19.000000Z'
+                      updated_at: '2024-02-02T07:01:19.000000Z'
+                      definitions: []
+                    -
+                      id: 10
+                      user_id: 1
+                      word: DRY
+                      appropriate: 1
+                      created_at: '2024-02-02T07:01:19.000000Z'
+                      updated_at: '2024-02-02T07:01:19.000000Z'
+                      definitions: []
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        user_id: 1
+                        word: FTP
+                        appropriate: 1
+                        created_at: '2024-02-02T07:01:19.000000Z'
+                        updated_at: '2024-02-02T07:01:19.000000Z'
+                        definitions:
+                          -
+                            id: 1
+                            word_id: 1
+                            definition: 'File Transfer Protocol'
+                            user_id: 1
+                            word_type_id: 15
+                            appropriate: 1
+                            created_at: '2024-02-02T07:01:19.000000Z'
+                            updated_at: '2024-02-02T07:01:19.000000Z'
+                      -
+                        id: 2
+                        user_id: 1
+                        word: IBM
+                        appropriate: 1
+                        created_at: '2024-02-02T07:01:19.000000Z'
+                        updated_at: '2024-02-02T07:01:19.000000Z'
+                        definitions:
+                          -
+                            id: 2
+                            word_id: 2
+                            definition: 'International Business Machines'
+                            user_id: 1
+                            word_type_id: 15
+                            appropriate: 1
+                            created_at: '2024-02-02T07:01:19.000000Z'
+                            updated_at: '2024-02-02T07:01:19.000000Z'
+                      -
+                        id: 3
+                        user_id: 1
+                        word: laser
+                        appropriate: 1
+                        created_at: '2024-02-02T07:01:19.000000Z'
+                        updated_at: '2024-02-02T07:01:19.000000Z'
+                        definitions: []
+                      -
+                        id: 4
+                        user_id: 1
+                        word: MoSCoW
+                        appropriate: 1
+                        created_at: '2024-02-02T07:01:19.000000Z'
+                        updated_at: '2024-02-02T07:01:19.000000Z'
+                        definitions: []
+                      -
+                        id: 5
+                        user_id: 1
+                        word: THROAT
+                        appropriate: 1
+                        created_at: '2024-02-02T07:01:19.000000Z'
+                        updated_at: '2024-02-02T07:01:19.000000Z'
+                        definitions: []
+                      -
+                        id: 6
+                        user_id: 1
+                        word: CRUD
+                        appropriate: 1
+                        created_at: '2024-02-02T07:01:19.000000Z'
+                        updated_at: '2024-02-02T07:01:19.000000Z'
+                        definitions: []
+                      -
+                        id: 7
+                        user_id: 1
+                        word: KISS
+                        appropriate: 1
+                        created_at: '2024-02-02T07:01:19.000000Z'
+                        updated_at: '2024-02-02T07:01:19.000000Z'
+                        definitions: []
+                      -
+                        id: 8
+                        user_id: 1
+                        word: PHP
+                        appropriate: 1
+                        created_at: '2024-02-02T07:01:19.000000Z'
+                        updated_at: '2024-02-02T07:01:19.000000Z'
+                        definitions: []
+                      -
+                        id: 9
+                        user_id: 1
+                        word: imho
+                        appropriate: 1
+                        created_at: '2024-02-02T07:01:19.000000Z'
+                        updated_at: '2024-02-02T07:01:19.000000Z'
+                        definitions: []
+                      -
+                        id: 10
+                        user_id: 1
+                        word: DRY
+                        appropriate: 1
+                        created_at: '2024-02-02T07:01:19.000000Z'
+                        updated_at: '2024-02-02T07:01:19.000000Z'
+                        definitions: []
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        user_id:
+                          type: integer
+                          example: 1
+                        word:
+                          type: string
+                          example: FTP
+                        appropriate:
+                          type: integer
+                          example: 1
+                        created_at:
+                          type: string
+                          example: '2024-02-02T07:01:19.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2024-02-02T07:01:19.000000Z'
+                        definitions:
+                          type: array
+                          example:
+                            -
+                              id: 1
+                              word_id: 1
+                              definition: 'File Transfer Protocol'
+                              user_id: 1
+                              word_type_id: 15
+                              appropriate: 1
+                              created_at: '2024-02-02T07:01:19.000000Z'
+                              updated_at: '2024-02-02T07:01:19.000000Z'
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              word_id:
+                                type: integer
+                                example: 1
+                              definition:
+                                type: string
+                                example: 'File Transfer Protocol'
+                              user_id:
+                                type: integer
+                                example: 1
+                              word_type_id:
+                                type: integer
+                                example: 15
+                              appropriate:
+                                type: integer
+                                example: 1
+                              created_at:
+                                type: string
+                                example: '2024-02-02T07:01:19.000000Z'
+                              updated_at:
+                                type: string
+                                example: '2024-02-02T07:01:19.000000Z'
+      tags:
+        - Endpoints
+  '/api/words/{id}':
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                word:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 32 characters.'
+                  example: q
+              required:
+                - word
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    word: FTP
+                    appropriate: 1
+                    definitions:
+                      -
+                        id: 1
+                        wordId: 1
+                        definition: 'File Transfer Protocol'
+                        userID: 1
+                        wordTypeId: 15
+                        appropriate: 1
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      word:
+                        type: string
+                        example: FTP
+                      appropriate:
+                        type: integer
+                        example: 1
+                      definitions:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            wordId: 1
+                            definition: 'File Transfer Protocol'
+                            userID: 1
+                            wordTypeId: 15
+                            appropriate: 1
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            wordId:
+                              type: integer
+                              example: 1
+                            definition:
+                              type: string
+                              example: 'File Transfer Protocol'
+                            userID:
+                              type: integer
+                              example: 1
+                            wordTypeId:
+                              type: integer
+                              example: 15
+                            appropriate:
+                              type: integer
+                              example: 1
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the word.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/definitions:
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                word:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 32 characters.'
+                  example: japahxa
+                definition:
+                  type: string
+                  description: ''
+                  example: magnam
+                word_type:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 32 characters.'
+                  example: dmsryh
+              required:
+                - word
+                - definition
+                - word_type
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      word_id: 1
+                      definition: 'File Transfer Protocol'
+                      user_id: 1
+                      word_type_id: 15
+                      appropriate: 1
+                      created_at: '2024-02-02T07:01:19.000000Z'
+                      updated_at: '2024-02-02T07:01:19.000000Z'
+                    -
+                      id: 2
+                      word_id: 2
+                      definition: 'International Business Machines'
+                      user_id: 1
+                      word_type_id: 15
+                      appropriate: 1
+                      created_at: '2024-02-02T07:01:19.000000Z'
+                      updated_at: '2024-02-02T07:01:19.000000Z'
+                    -
+                      id: 3
+                      word_id: 18
+                      definition: test
+                      user_id: 1
+                      word_type_id: 19
+                      appropriate: 1
+                      created_at: '2024-02-02T07:07:09.000000Z'
+                      updated_at: '2024-02-02T07:07:09.000000Z'
+                    -
+                      id: 4
+                      word_id: 18
+                      definition: '1'
+                      user_id: 3
+                      word_type_id: 20
+                      appropriate: 1
+                      created_at: '2024-02-02T07:09:13.000000Z'
+                      updated_at: '2024-02-02T07:09:13.000000Z'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        word_id: 1
+                        definition: 'File Transfer Protocol'
+                        user_id: 1
+                        word_type_id: 15
+                        appropriate: 1
+                        created_at: '2024-02-02T07:01:19.000000Z'
+                        updated_at: '2024-02-02T07:01:19.000000Z'
+                      -
+                        id: 2
+                        word_id: 2
+                        definition: 'International Business Machines'
+                        user_id: 1
+                        word_type_id: 15
+                        appropriate: 1
+                        created_at: '2024-02-02T07:01:19.000000Z'
+                        updated_at: '2024-02-02T07:01:19.000000Z'
+                      -
+                        id: 3
+                        word_id: 18
+                        definition: test
+                        user_id: 1
+                        word_type_id: 19
+                        appropriate: 1
+                        created_at: '2024-02-02T07:07:09.000000Z'
+                        updated_at: '2024-02-02T07:07:09.000000Z'
+                      -
+                        id: 4
+                        word_id: 18
+                        definition: '1'
+                        user_id: 3
+                        word_type_id: 20
+                        appropriate: 1
+                        created_at: '2024-02-02T07:09:13.000000Z'
+                        updated_at: '2024-02-02T07:09:13.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        word_id:
+                          type: integer
+                          example: 1
+                        definition:
+                          type: string
+                          example: 'File Transfer Protocol'
+                        user_id:
+                          type: integer
+                          example: 1
+                        word_type_id:
+                          type: integer
+                          example: 15
+                        appropriate:
+                          type: integer
+                          example: 1
+                        created_at:
+                          type: string
+                          example: '2024-02-02T07:01:19.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2024-02-02T07:01:19.000000Z'
+      tags:
+        - Endpoints
+  '/api/definitions/{id}':
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                word:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 32 characters.'
+                  example: uqgxvvhcp
+                definition:
+                  type: string
+                  description: ''
+                  example: ea
+                word_type:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 32 characters.'
+                  example: yozsgcxjehphdatetctocl
+              required:
+                - word
+                - definition
+                - word_type
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    wordId: 1
+                    definition: 'File Transfer Protocol'
+                    userID: 1
+                    wordTypeId: 15
+                    appropriate: 1
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      wordId:
+                        type: integer
+                        example: 1
+                      definition:
+                        type: string
+                        example: 'File Transfer Protocol'
+                      userID:
+                        type: integer
+                        example: 1
+                      wordTypeId:
+                        type: integer
+                        example: 15
+                      appropriate:
+                        type: integer
+                        example: 1
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the definition.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/definitions/{definition_id}/rate':
+    post:
+      summary: ''
+      operationId: postApiDefinitionsDefinition_idRate
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: definition_id
+        description: 'The ID of the definition.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/definitions/{definition_id}/rate/{rating_id}':
+    put:
+      summary: ''
+      operationId: putApiDefinitionsDefinition_idRateRating_id
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+    delete:
+      summary: ''
+      operationId: deleteApiDefinitionsDefinition_idRateRating_id
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: definition_id
+        description: 'The ID of the definition.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: rating_id
+        description: 'The ID of the rating.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/wordTypes:
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - WordType
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 32 characters.'
+                  example: nyn
+                code:
+                  type: string
+                  description: 'Must not be greater than 2 characters.'
+                  example: xn
+              required:
+                - name
+                - code
+    get:
+      summary: 'index request'
+      operationId: indexRequest
+      description: 'Display a listing of the resource.'
+      parameters:
+        -
+          in: query
+          name: perPage
+          description: 'Returned number of items per page'
+          example: 15
+          required: false
+          schema:
+            type: integer
+            description: 'Returned number of items per page'
+            example: 15
+        -
+          in: query
+          name: search
+          description: 'Text to filter by'
+          example: possimus
+          required: false
+          schema:
+            type: string
+            description: 'Text to filter by'
+            example: possimus
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - WordType
+  '/api/wordTypes/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - WordType
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - WordType
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must be at least 2 characters. Must not be greater than 32 characters.'
+                  example: oedyxewvswbqkunvoblgk
+                code:
+                  type: string
+                  description: 'Must not be greater than 2 characters.'
+                  example: vs
+              required:
+                - name
+                - code
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - WordType
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the wordType.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Endpoints
+    description: ''
+  -
+    name: WordType
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.'
+security:
+  -
+    default: []
